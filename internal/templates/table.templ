@@ -1,0 +1,38 @@
+package templates
+
+import (
+    "fmt"
+
+    "debtrecyclingcalculator.com.au/internal/calc"
+)
+
+templ table(data *calc.DebtRecyclingData) {
+    <table class="bg-white shadow-md rounded-lg mb-4 mx-auto border-separate table-auto">
+        <thead>
+            <tr class="bg-gray-200 border-b">
+                <th class="bg-grey-100 px-4 py-2 border">Year</th>
+                <th class="bg-grey-100 px-4 py-2 border">Debt Recycled</th>
+                <th class="bg-grey-100 px-4 py-2 border">Dividends</th>
+                <th class="bg-grey-100 px-4 py-2 border">Non-Deductible Interest</th>
+                <th class="bg-grey-100 px-4 py-2 border">Tax-Deductible Interest</th>
+                <th class="bg-grey-100 px-4 py-2 border">Tax Savings</th>
+                <th class="bg-grey-100 px-4 py-2 border">Portfolio Value</th>
+                <th class="bg-grey-100 px-4 py-2 border">Net Position</th>
+            </tr>
+        </thead>
+        <tbody>
+        for year := 0; year < len(data.CumulativeDebtRecycled); year++ {
+            <tr>
+                <td class="px-4 py-2 border">{ fmt.Sprintf("%d", year+1) }</td>
+                <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.CumulativeDebtRecycled[year])) }</td>
+                <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.DividendReturn[year])) }</td>
+                <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.NonDeductibleInterest[year])) }</td>
+                <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.TaxDeductibleInterest[year])) }</td>
+                <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.TaxSavings[year])) }</td>
+                <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.PortfolioValue[year])) }</td>
+                <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.NetPosition[year])) }</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

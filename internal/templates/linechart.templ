@@ -1,0 +1,13 @@
+package templates
+
+import (
+    "debtrecyclingcalculator.com.au/internal/charts"
+
+    echarts "github.com/go-echarts/go-echarts/v2/charts"
+)
+
+templ lineChart(chart *echarts.Line) {
+    <div class="flex-col w-full border p-4 mx-auto">
+        @charts.ChartToTemplComponent(chart)
+    </div>
+}

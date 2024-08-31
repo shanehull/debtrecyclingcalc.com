@@ -1,0 +1,12 @@
+package templates
+
+import (
+    "debtrecyclingcalculator.com.au/internal/calc"
+    echarts "github.com/go-echarts/go-echarts/v2/charts"
+)
+
+templ Results(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters, lchart *echarts.Line)  {
+    @metrics(data, params)
+    @table(data)
+    @lineChart(lchart)
+}

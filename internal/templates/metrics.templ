@@ -1,0 +1,28 @@
+package templates
+
+import (
+    "fmt"
+    "debtrecyclingcalculator.com.au/internal/calc"
+)
+
+var firstPositive = -1
+
+func getFirstPositiveYear(data *calc.DebtRecyclingData) int {
+    for i, value := range data.NetPosition {
+       if value > 0 {
+               return i+1
+       }
+    }
+    return -1
+}
+
+templ metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters) {
+    <div class="metrics-info text-center mb-4 p-2">
+      <h2 class="text-2xl">Metrics</h2>
+      <ul>
+        <li><strong>Net Positive:</strong> { fmt.Sprintf("%d years", getFirstPositiveYear(data)) }</li>
+        <li><strong>CAGR (+ DR):</strong> { fmt.Sprintf("%.2f", calc.CAGR(data.TotalInvested,data.TotalValue,params.NumYears)*100) }%</li>
+        <li><strong>CAGR (- DR):</strong> { fmt.Sprintf("%.2f", (params.CapitalGrowthRate+params.DividendReturnRate)*100) }%</li>
+      </ul>
+    </div>
+}
