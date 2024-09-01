@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"debtrecyclingcalculator.com.au/internal/handlers"
+	"debtrecyclingcalculator.com.au/internal/middleware"
 )
 
 var (
@@ -20,7 +21,11 @@ var (
 )
 
 func main() {
-	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	ctx, cancel := signal.NotifyContext(
+		context.Background(),
+		os.Interrupt,
+		syscall.SIGTERM,
+	)
 
 	// Check if the SERVER_HOST env var is set and override
 	envHost, ok := os.LookupEnv("SERVER_HOST")
@@ -40,11 +45,23 @@ func main() {
 	fileServer := http.FileServer(http.Dir("./static"))
 	mux.Handle("/static/*", http.StripPrefix("/static/", fileServer))
 
-	mux.HandleFunc("/", cors(http.HandlerFunc(handlers.IndexHandler)))
+	mux.HandleFunc("/",
+		middleware.CORS(
+			http.HandlerFunc(
+				handlers.IndexHandler,
+			),
+			allowedOrigin),
+	)
 
-	mux.HandleFunc("/calc", cors(http.HandlerFunc(handlers.CalcHandler)))
+	mux.HandleFunc("/calc",
+		middleware.CORS(
+			http.HandlerFunc(
+				handlers.CalcHandler,
+			),
+			allowedOrigin),
+	)
 
-	// TODO: healthz
+	mux.HandleFunc("/healthz", http.HandlerFunc(handlers.HealthzHandler))
 
 	// Run the server at
 	serveAt := fmt.Sprintf("%s:%s", serverHost, serverPort)
@@ -67,20 +84,4 @@ func main() {
 	cancel()
 
 	fmt.Println("Server stopped")
-}
-
-func cors(h http.Handler) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", allowedOrigin)
-		w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers",
-			"Content-Type, hx-target, hx-current-url, hx-request")
-
-		if r.Method == "OPTIONS" {
-			w.WriteHeader(http.StatusNoContent)
-			return
-		}
-
-		h.ServeHTTP(w, r)
-	}
 }
