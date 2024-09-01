@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"debtrecyclingcalculator.com.au/internal/calc"
-	"debtrecyclingcalculator.com.au/internal/charts"
-	"debtrecyclingcalculator.com.au/internal/templates"
+	"debtrecyclingcalc.com/internal/calc"
+	"debtrecyclingcalc.com/internal/charts"
+	"debtrecyclingcalc.com/internal/templates"
 )
 
 func CalcHandler(w http.ResponseWriter, r *http.Request) {

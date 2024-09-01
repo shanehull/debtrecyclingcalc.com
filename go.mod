@@ -1,4 +1,4 @@
-module debtrecyclingcalculator.com.au
+module debtrecyclingcalc.com
 
 go 1.22.0
 

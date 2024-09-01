@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"debtrecyclingcalculator.com.au/internal/calc"
+	"debtrecyclingcalc.com/internal/calc"
 	"github.com/a-h/templ"
 
 	echarts "github.com/go-echarts/go-echarts/v2/charts"

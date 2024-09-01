@@ -9,7 +9,7 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"debtrecyclingcalculator.com.au/internal/charts"
+	"debtrecyclingcalc.com/internal/charts"
 
 	echarts "github.com/go-echarts/go-echarts/v2/charts"
 )

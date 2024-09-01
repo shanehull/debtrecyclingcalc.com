@@ -10,8 +10,8 @@ import (
 	"syscall"
 	"time"
 
-	"debtrecyclingcalculator.com.au/internal/handlers"
-	"debtrecyclingcalculator.com.au/internal/middleware"
+	"debtrecyclingcalc.com/internal/handlers"
+	"debtrecyclingcalc.com/internal/middleware"
 )
 
 var (

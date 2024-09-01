@@ -11,7 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import (
 	"fmt"
 
-	"debtrecyclingcalculator.com.au/internal/calc"
+	"debtrecyclingcalc.com/internal/calc"
 )
 
 func table(data *calc.DebtRecyclingData, years int) templ.Component {

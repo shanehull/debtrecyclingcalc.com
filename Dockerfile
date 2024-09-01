@@ -10,7 +10,7 @@ RUN update-ca-certificates
 RUN go install github.com/a-h/templ/cmd/templ@latest
 
 RUN GO_ENABLED=0 GOOS=linux go build \
-    -ldflags "debtrecyclingcalculator.com.au/internal/buildinfo.GitTag=$(git describe --tags)" \
+    -ldflags "debtrecyclingcalc.com/internal/buildinfo.GitTag=$(git describe --tags)" \
     -o ./bin/main ./cmd/
 
 FROM scratch

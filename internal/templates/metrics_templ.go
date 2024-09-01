@@ -13,7 +13,7 @@ import (
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
 
-	"debtrecyclingcalculator.com.au/internal/calc"
+	"debtrecyclingcalc.com/internal/calc"
 )
 
 var firstPositive = -1
