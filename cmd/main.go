@@ -23,16 +23,16 @@ func main() {
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 
 	// Check if the SERVER_HOST env var is set and override
-	envHost, ok := os.LookupEnv("SH_SERVER_HOST")
+	envHost, ok := os.LookupEnv("SERVER_HOST")
 	if ok {
 		serverHost = envHost
 	}
 
 	// Check if SH_ALLOWED_ORIGIN env var is set and override
-	envOrigin, ok := os.LookupEnv("SH_ALLOWED_ORIGIN")
+	envOrigin, ok := os.LookupEnv("ALLOWED_ORIGIN")
 	if ok {
 		allowedOrigin = envOrigin
-		fmt.Printf("API routes allowed origin: %s\n", allowedOrigin)
+		fmt.Printf("Allowed origin: %s\n", allowedOrigin)
 	}
 
 	mux := http.NewServeMux()
@@ -44,6 +44,8 @@ func main() {
 
 	mux.HandleFunc("/calc", cors(http.HandlerFunc(handlers.CalcHandler)))
 
+	// TODO: healthz
+
 	// Run the server at
 	serveAt := fmt.Sprintf("%s:%s", serverHost, serverPort)
 	go func() {
@@ -52,7 +54,7 @@ func main() {
 		}
 	}()
 
-	fmt.Printf("API Server available at %s\n", serveAt)
+	fmt.Printf("Server available at %s\n", serveAt)
 
 	// Wait for interrupt signal.
 	<-ctx.Done()

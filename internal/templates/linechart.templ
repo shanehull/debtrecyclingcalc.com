@@ -7,7 +7,7 @@ import (
 )
 
 templ lineChart(chart *echarts.Line) {
-    <div class="flex-col w-full border p-4 mx-auto">
+    <div class="mx-auto max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl">
         @charts.ChartToTemplComponent(chart)
     </div>
 }

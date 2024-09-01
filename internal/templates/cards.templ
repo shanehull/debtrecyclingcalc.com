@@ -1,0 +1,40 @@
+package templates
+
+import (
+    "fmt"
+
+    "debtrecyclingcalculator.com.au/internal/calc"
+)
+
+templ cards(data *calc.DebtRecyclingData, years int) {
+    <div class="block sm:hidden sm:grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 text-center">
+        for year := 0; year < years;year++ {
+        <div class="bg-white shadow-md rounded-lg mx-auto border border-gray-200 p-4 mb-4 max-w-sm">
+            <div class="mb-2 text-center">
+                <h2 class="text-2xl font-bold">{ fmt.Sprintf("Year %d", year+1) }</h2>
+            </div>
+            <div class="mb-2">
+                <span class="font-bold">Debt Recycled: </span><span>{ fmt.Sprintf("%d", int(data.DebtRecycled[year])) }</span>
+            </div>
+            <div class="mb-2">
+                <span class="font-bold">Non-Deductible Interest: </span><span>{ fmt.Sprintf("%d", int(data.NonDeductibleInterest[year])) }</span>
+            </div>
+            <div class="mb-2">
+                <span class="font-bold">Tax-Deductible Interest: </span><span>{ fmt.Sprintf("%d", int(data.TaxDeductibleInterest[year])) }</span>
+            </div>
+            <div class="mb-2">
+                <span class="font-bold">Tax Savings: </span><span>{ fmt.Sprintf("%d", int(data.TaxSavings[year])) }</span>
+            </div>
+            <div class="mb-2">
+                <span class="font-bold">Dividends: </span><span>{ fmt.Sprintf("%d", int(data.DividendReturn[year])) }</span>
+            </div>
+            <div class="mb-2">
+                <span class="font-bold">Portfolio Value: </span><span>{ fmt.Sprintf("%d", int(data.PortfolioValue[year])) }</span>
+            </div>
+            <div class="mb-2">
+                <span class="font-bold">Net Position: </span><span>{ fmt.Sprintf("%d", int(data.NetPosition[year])) }</span>
+            </div>
+        </div>
+        }
+    </div>
+}

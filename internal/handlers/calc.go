@@ -62,6 +62,7 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "error parsing years", http.StatusBadRequest)
 		return
 	}
+	country := r.Form.Get("country")
 
 	reinvestDividends := r.Form.Get("reinvest_dividends") == "on"
 	reinvestTaxRefunds := r.Form.Get("reinvest_tax_refunds") == "on"
@@ -77,11 +78,12 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 		ReinvestDividends:    reinvestDividends,
 		ReinvestTaxRefunds:   reinvestTaxRefunds,
 		NumYears:             years,
+		Country:              country,
 	}
 
 	data := calc.DebtRecycling(*params)
 
-	lineChart, err := charts.StackedLineChart(data)
+	lineChart, err := charts.StackedLineChart(data, params.NumYears)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

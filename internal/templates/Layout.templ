@@ -1,11 +1,11 @@
 package templates
 
-
 templ head(title string) {
     <head>
         <title>{title}</title>
+        <meta name="description" content="Calculate your debt recycling scnenario.">
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="static/css/style.min.css" />
     </head>
@@ -13,13 +13,13 @@ templ head(title string) {
 
 templ header() {
     <header class="bg-white text-blue text-center py-8 w-full top-0">
-        <h1 class="text-4xl">Debt Recycling Calculator</h1>
+        <h1 class="text-2xl font-extrabold"><a href="/">Debt Recycling Calculator</a></h1>
     </header>
 }
 
 
-templ footer() {
-    <footer class="bg-white p-4 mt-10 text-center text-blue bottom-0">
+templ footer(gitTag string, buildDate string) {
+    <footer class="bg-white py-4 mt-10 text-center bottom-0">
         <p class="flex items-center justify-center text-md mx-auto space-x-2 pb-2">
             <a href="https://github.com/shanehull/debt-recycling-calc" target="_blank" class="flex items-center text-blue-600 hover:underline">
                 <svg width="22" height="22" version="1.1" id="svg4" alt="GitHub" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" class="">
@@ -29,20 +29,28 @@ templ footer() {
                 <span class="px-2">Source code</span>
             </a>
         </p>
-        <p class="text-sm mb-2 p-4">
+        <p class="text-sm p-4">
             ❤️ from <a href="https://shanehull.com" target="_blank" class="text-blue-600 hover:underline">Shane Hull</a>
         </p>
-
+        <p class="text-sm">
+        Build version: { gitTag }
+        </p>
+        <p class="text-sm">
+        Build date: { buildDate }
+        </p>
     </footer>
 }
 
-templ Layout(contents templ.Component, title string) {
-    <body class="bg-white flex-col min-h-screen w-full">
+templ Layout(contents templ.Component, title string, gitTag string, buildDate string) {
+    <!DOCTYPE html>
+    <html lang="en">
     @head(title)
+    <body class="bg-white flex-col min-h-screen w-full">
     @header()
     <main class="bg-gray-200 flex-col w-full mx-auto">
         @contents
     </main>
     </body>
-    @footer()
+    @footer(gitTag, buildDate)
+    </html>
 }

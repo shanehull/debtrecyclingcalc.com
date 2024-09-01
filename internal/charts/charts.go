@@ -22,33 +22,46 @@ func ChartToTemplComponent(chart Renderable) templ.Component {
 	})
 }
 
-func StackedLineChart(data *calc.DebtRecyclingData) (*echarts.Line, error) {
+func StackedLineChart(data *calc.DebtRecyclingData, years int) (*echarts.Line, error) {
 	// Create a new line chart
 	line := echarts.NewLine()
 
 	// Set the chart title
 	line.SetGlobalOptions(
+		echarts.WithTitleOpts(
+			opts.Title{
+				Subtitle: "Chart in 000's",
+				Bottom:   "3%",
+				Left:     "center",
+			},
+		),
 		echarts.WithLegendOpts(opts.Legend{Left: "center"}),
+		echarts.WithTooltipOpts(
+			opts.Tooltip{
+				Show:        opts.Bool(true),
+				Trigger:     "axis",
+				AxisPointer: &opts.AxisPointer{Type: "cross"},
+			},
+		),
 	)
 
-	years := len(data.CumulativeDebtRecycled)
 	debtRecycledLineData := make([]opts.LineData, years)
 	netPositionLineData := make([]opts.LineData, years)
 	portfolioValueLineData := make([]opts.LineData, years)
-	xAxisData := make([]string, len(data.CumulativeDebtRecycled))
+	xAxisData := make([]string, years)
 
 	// Create LineData for all series in loop
 	for year := 0; year < years; year++ {
 		debtRecycledLineData[year] = opts.LineData{
-			Value: int(data.CumulativeDebtRecycled[year]),
+			Value: int(data.DebtRecycled[year] / 1000),
 		}
 
 		netPositionLineData[year] = opts.LineData{
-			Value: int(data.NetPosition[year]),
+			Value: int(data.NetPosition[year] / 1000),
 		}
 
 		portfolioValueLineData[year] = opts.LineData{
-			Value: int(data.PortfolioValue[year]),
+			Value: int(data.PortfolioValue[year] / 1000),
 		}
 		xAxisData[year] = fmt.Sprintf("%d", year+1)
 	}

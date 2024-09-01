@@ -3,6 +3,7 @@ package handlers
 import (
 	"net/http"
 
+	"debtrecyclingcalculator.com.au/internal/buildinfo"
 	"debtrecyclingcalculator.com.au/internal/calc"
 	"debtrecyclingcalculator.com.au/internal/charts"
 	"debtrecyclingcalculator.com.au/internal/templates"
@@ -14,10 +15,13 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := &calc.DebtRecyclingData{}
+	data := &calc.DebtRecyclingData{
+		PortfolioValue: []float64{0},
+		DebtRecycled:   []float64{0},
+	}
 	params := &calc.DebtRecyclingParameters{}
 
-	lineChart, err := charts.StackedLineChart(data)
+	lineChart, err := charts.StackedLineChart(data, params.NumYears)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -25,7 +29,8 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
 	index := templates.Index(templates.Form(), templates.Results(data, params, lineChart))
 
-	err = templates.Layout(index, "Debt Recycling Calculator").Render(r.Context(), w)
+	err = templates.Layout(index, "Debt Recycling Calculator", buildinfo.GitTag, buildinfo.BuildDate).
+		Render(r.Context(), w)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

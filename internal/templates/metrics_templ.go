@@ -9,19 +9,34 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"debtrecyclingcalculator.com.au/internal/calc"
 	"fmt"
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
+
+	"debtrecyclingcalculator.com.au/internal/calc"
 )
 
 var firstPositive = -1
 
-func getFirstPositiveYear(data *calc.DebtRecyclingData) int {
-	for i, value := range data.NetPosition {
+func getFirstPositiveYear(data []float64) int {
+	for i, value := range data {
 		if value > 0 {
 			return i + 1
 		}
 	}
 	return -1
+}
+
+func getYearsIndex(numYears int) int {
+	if numYears == 0 {
+		return 0
+	}
+	return numYears - 1
+}
+
+func printHumanInt(value int) string {
+	p := message.NewPrinter(language.English)
+	return p.Sprintf("%d", value)
 }
 
 func metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters) templ.Component {
@@ -42,40 +57,40 @@ func metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters)
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"metrics-info text-center mb-4 p-2\"><h2 class=\"text-2xl\">Metrics</h2><ul><li><strong>Net Positive:</strong> ")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"text-center mb-4 mx-auto border border-gray-200 p-4 max-w-md\"><h2 class=\"text-2xl mb-4\">📊 Key Stats</h2><ul class=\"flex-col\"><li><strong>💰 Portfolio Value:</strong> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d years", getFirstPositiveYear(data)))
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("$%s", printHumanInt(int(data.PortfolioValue[getYearsIndex(params.NumYears)]))))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/metrics.templ`, Line: 23, Col: 96}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/metrics.templ`, Line: 38, Col: 144}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</li><li><strong>CAGR (+ DR):</strong> ")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</li><li><strong>✅ Net Positive:</strong> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", calc.CAGR(data.TotalInvested, data.TotalValue, params.NumYears)*100))
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d years", getFirstPositiveYear(data.NetPosition)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/metrics.templ`, Line: 24, Col: 130}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/metrics.templ`, Line: 39, Col: 112}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("%</li><li><strong>CAGR (- DR):</strong> ")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</li><li><strong>📈 CAGR:</strong> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", (params.CapitalGrowthRate+params.DividendReturnRate)*100))
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", calc.CAGR(data.TotalInvested, data.TotalValue, params.NumYears)*100))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/metrics.templ`, Line: 25, Col: 121}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/metrics.templ`, Line: 40, Col: 128}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {

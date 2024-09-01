@@ -13,13 +13,17 @@ templ-generate:
 .PHONY: templ-watch
 templ-watch:
 	templ generate --watch
-	
+
 .PHONY: dev
 dev:
-	go build -o ./tmp/$(APP_NAME) ./cmd/$(APP_NAME)/main.go && air
+	make tailwind-build
+	make templ-generate
+	go build -ldflags "-X debtrecyclingcalculator.com.au/internal/buildinfo.GitTag=dev" \
+		-o ./tmp/main ./cmd/ && air
 
 .PHONY: build
 build:
 	make tailwind-build
 	make templ-generate
-	go build -ldflags "-X main.Environment=production" -o ./bin/$(APP_NAME) ./cmd/$(APP_NAME)/main.go
+	go build -ldflags "debtrecyclingcalculator.com.au/internal/buildinfo.GitTag=$(git describe --tags)" \
+		-o ./bin/main ./cmd/
