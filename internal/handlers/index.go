@@ -16,8 +16,9 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := &calc.DebtRecyclingData{
-		PortfolioValue: []float64{0},
-		DebtRecycled:   []float64{0},
+		PortfolioValue:  []float64{0},
+		DividendReturns: []float64{0},
+		TaxRefunds:      []float64{0},
 	}
 	params := &calc.DebtRecyclingParameters{}
 

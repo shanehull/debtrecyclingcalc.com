@@ -23,9 +23,9 @@ type DebtRecyclingData struct {
 	DebtRecycled          []float64
 	NonDeductibleInterest []float64
 	TaxDeductibleInterest []float64
-	TaxSavings            []float64
-	CumulativeTaxSavings  []float64
-	DividendReturn        []float64
+	TaxRefunds            []float64
+	CumulativeTaxRefunds  []float64
+	DividendReturns       []float64
 	CumulativeDividends   []float64
 	PortfolioValue        []float64
 	NetPosition           []float64
@@ -90,9 +90,9 @@ func DebtRecycling(params DebtRecyclingParameters) *DebtRecyclingData {
 	data.DebtRecycled = make([]float64, params.NumYears)
 	data.NonDeductibleInterest = make([]float64, params.NumYears)
 	data.TaxDeductibleInterest = make([]float64, params.NumYears)
-	data.TaxSavings = make([]float64, params.NumYears)
-	data.CumulativeTaxSavings = make([]float64, params.NumYears)
-	data.DividendReturn = make([]float64, params.NumYears)
+	data.TaxRefunds = make([]float64, params.NumYears)
+	data.CumulativeTaxRefunds = make([]float64, params.NumYears)
+	data.DividendReturns = make([]float64, params.NumYears)
 	data.CumulativeDividends = make([]float64, params.NumYears)
 	data.PortfolioValue = make([]float64, params.NumYears+1)
 	data.NetPosition = make([]float64, params.NumYears)
@@ -103,13 +103,13 @@ func DebtRecycling(params DebtRecyclingParameters) *DebtRecyclingData {
 	// Calculate for each year
 	for year := 0; year < params.NumYears; year++ {
 		// Calculate dividends for the year
-		data.DividendReturn[year] = data.PortfolioValue[year] * params.DividendReturnRate
+		data.DividendReturns[year] = data.PortfolioValue[year] * params.DividendReturnRate
 
 		// Accumulate dividends
 		if year > 0 {
-			data.CumulativeDividends[year] = data.CumulativeDividends[year-1] + data.DividendReturn[year]
+			data.CumulativeDividends[year] = data.CumulativeDividends[year-1] + data.DividendReturns[year]
 		} else {
-			data.CumulativeDividends[year] = data.DividendReturn[year]
+			data.CumulativeDividends[year] = data.DividendReturns[year]
 		}
 
 		// Calculate total invested amount up to the current year (not gt mortgage size)
@@ -129,23 +129,23 @@ func DebtRecycling(params DebtRecyclingParameters) *DebtRecyclingData {
 		)
 
 		// Calculate tax savings (adjusting for tax liability)
-		taxRate := taxRate((params.Salary + data.DividendReturn[year]), params.Country)
-		data.TaxSavings[year] = data.TaxDeductibleInterest[year] * (1 - taxRate)
+		taxRate := taxRate((params.Salary + data.DividendReturns[year]), params.Country)
+		data.TaxRefunds[year] = data.TaxDeductibleInterest[year] * (1 - taxRate)
 
 		// Accumulate tax savings
 		if year > 0 {
-			data.CumulativeTaxSavings[year] = data.CumulativeTaxSavings[year-1] + data.TaxSavings[year]
+			data.CumulativeTaxRefunds[year] = data.CumulativeTaxRefunds[year-1] + data.TaxRefunds[year]
 		} else {
-			data.CumulativeTaxSavings[year] = data.TaxSavings[year]
+			data.CumulativeTaxRefunds[year] = data.TaxRefunds[year]
 		}
 
 		// Reinvest dividends and tax refunds if applicable
 		reinvestment := 0.0
 		if params.ReinvestDividends {
-			reinvestment += data.DividendReturn[year]
+			reinvestment += data.DividendReturns[year]
 		}
 		if params.ReinvestTaxRefunds {
-			reinvestment += data.TaxSavings[year]
+			reinvestment += data.TaxRefunds[year]
 		}
 
 		// Apply annual growth and investments to the following year
@@ -172,7 +172,7 @@ func DebtRecycling(params DebtRecyclingParameters) *DebtRecyclingData {
 	}
 
 	// Final values
-	data.TotalValue = data.PortfolioValue[params.NumYears] + data.CumulativeTaxSavings[params.NumYears-1] + data.CumulativeDividends[params.NumYears-1]
+	data.TotalValue = data.PortfolioValue[params.NumYears] + data.CumulativeTaxRefunds[params.NumYears-1] + data.CumulativeDividends[params.NumYears-1]
 	data.TotalInvested = params.InitialInvestment + (params.AnnualInvestment * float64(params.NumYears))
 
 	return data

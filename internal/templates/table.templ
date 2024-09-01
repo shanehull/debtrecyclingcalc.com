@@ -28,8 +28,8 @@ templ table(data *calc.DebtRecyclingData, years int) {
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.DebtRecycled[year])) }</td>
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.NonDeductibleInterest[year])) }</td>
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.TaxDeductibleInterest[year])) }</td>
-                   <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.TaxSavings[year])) }</td>
-                   <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.DividendReturn[year])) }</td>
+                   <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.TaxRefunds[year])) }</td>
+                   <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.DividendReturns[year])) }</td>
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.PortfolioValue[year])) }</td>
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.NetPosition[year])) }</td>
                </tr>

@@ -49,7 +49,7 @@ func Test_DebtRecycling(t *testing.T) {
 					500000,
 					550000,
 				},
-				DividendReturn: []float64{
+				DividendReturns: []float64{
 					2000,
 					3240,
 					4579.200000000001,
@@ -97,7 +97,7 @@ func Test_DebtRecycling(t *testing.T) {
 					25000,
 					27500,
 				},
-				TaxSavings: []float64{
+				TaxRefunds: []float64{
 					4247.11052631579,
 					6361.59749412686,
 					8469.289529251026,
@@ -109,7 +109,7 @@ func Test_DebtRecycling(t *testing.T) {
 					20937.290390528968,
 					22979.20558344762,
 				},
-				CumulativeTaxSavings: []float64{
+				CumulativeTaxRefunds: []float64{
 					4247.11052631579,
 					10608.70802044265,
 					19077.997549693675,
@@ -202,7 +202,7 @@ func Test_DebtRecycling(t *testing.T) {
 					516637.936768,
 					569381.7304448,
 				},
-				CumulativeTaxSavings: []float64{
+				CumulativeTaxRefunds: []float64{
 					4247.11052631579,
 					10608.417937589276,
 					19076.674040195816,
@@ -282,7 +282,7 @@ func Test_DebtRecycling(t *testing.T) {
 					79750.18584796187,
 					100121.42217060634,
 				},
-				CumulativeTaxSavings: []float64{
+				CumulativeTaxRefunds: []float64{
 					4247.11052631579,
 					10608.092194034987,
 					19075.30345854735,
@@ -377,9 +377,9 @@ func Test_DebtRecycling(t *testing.T) {
 		)
 		compareAllFloat64Values(
 			t,
-			dr.CumulativeTaxSavings,
-			c.expected.CumulativeTaxSavings,
-			"CumulativeTaxSavings",
+			dr.CumulativeTaxRefunds,
+			c.expected.CumulativeTaxRefunds,
+			"CumulativeTaxRefunds",
 			i,
 			c.params,
 		)

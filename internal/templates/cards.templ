@@ -23,10 +23,10 @@ templ cards(data *calc.DebtRecyclingData, years int) {
                 <span class="font-bold">Tax-Deductible Interest: </span><span>{ fmt.Sprintf("%d", int(data.TaxDeductibleInterest[year])) }</span>
             </div>
             <div class="mb-2">
-                <span class="font-bold">Tax Savings: </span><span>{ fmt.Sprintf("%d", int(data.TaxSavings[year])) }</span>
+                <span class="font-bold">Tax Savings: </span><span>{ fmt.Sprintf("%d", int(data.TaxRefunds[year])) }</span>
             </div>
             <div class="mb-2">
-                <span class="font-bold">Dividends: </span><span>{ fmt.Sprintf("%d", int(data.DividendReturn[year])) }</span>
+                <span class="font-bold">Dividends: </span><span>{ fmt.Sprintf("%d", int(data.DividendReturns[year])) }</span>
             </div>
             <div class="mb-2">
                 <span class="font-bold">Portfolio Value: </span><span>{ fmt.Sprintf("%d", int(data.PortfolioValue[year])) }</span>

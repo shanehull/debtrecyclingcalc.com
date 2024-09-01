@@ -33,11 +33,49 @@ func printHumanInt(value int) string {
 
 templ metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters) {
     <div class="text-center mb-4 mx-auto border border-gray-200 p-4 max-w-md">
-      <h2 class="text-2xl mb-4">📊 Key Stats</h2>
-      <ul class="flex-col">
-        <li><strong>💰 Portfolio Value:</strong> { fmt.Sprintf("$%s", printHumanInt(int(data.PortfolioValue[getYearsIndex(params.NumYears)]))) }</li>
-        <li><strong>✅ Net Positive:</strong> { fmt.Sprintf("%d years", getFirstPositiveYear(data.NetPosition)) }</li>
-        <li><strong>📈 CAGR:</strong> { fmt.Sprintf("%.2f", calc.CAGR(data.TotalInvested,data.TotalValue,params.NumYears)*100) }%</li>
+      <h2 class="text-2xl mb-4 font-bold">📊 Key Stats</h2>
+      <ul class="flex-col text-lg">
+        <li>
+            <strong>
+                <span class="text-xl">
+                💰 
+                </span>
+                Portfolio Value:
+            </strong> { fmt.Sprintf("$%s", printHumanInt(int(data.PortfolioValue[getYearsIndex(params.NumYears)]))) }
+        </li>
+        <li>
+            <strong>
+
+                <span class="text-xl">
+                💵 
+                </span>
+                Year { fmt.Sprintf("%d", params.NumYears) } Dividends:
+                </strong> { fmt.Sprintf("$%s", printHumanInt(int(data.DividendReturns[getYearsIndex(params.NumYears)]))) }
+        </li>
+        <li>
+            <strong>
+                <span class="text-xl">
+                🏦 
+                </span>
+                Year { fmt.Sprintf("%d", params.NumYears) } Tax Refund:
+            </strong> { fmt.Sprintf("$%s", printHumanInt(int(data.TaxRefunds[getYearsIndex(params.NumYears)]))) }
+        </li>
+        <li>
+            <strong>
+                <span class="text-xl">
+                ✅ 
+                </span>
+                Net Positive In:
+            </strong> { fmt.Sprintf("%d years", getFirstPositiveYear(data.NetPosition)) }
+        </li>
+        <li>
+            <strong>
+                <span class="text-xl">
+                📈 
+                </span>
+                CAGR:
+            </strong> { fmt.Sprintf("%.2f", calc.CAGR(data.TotalInvested,data.TotalValue,params.NumYears)*100) }%
+        </li>
       </ul>
     </div>
 }
