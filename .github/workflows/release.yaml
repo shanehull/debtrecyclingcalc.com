@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Release Please
         id: release-please
-        uses: googleapis/release-please-action
+        uses: googleapis/release-please-action@v4
         with:
           token: ${{secrets.GITHUB_TOKEN}}
       - uses: actions/checkout@v4
