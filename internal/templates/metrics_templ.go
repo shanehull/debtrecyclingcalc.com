@@ -57,7 +57,7 @@ func metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters)
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"text-center mb-4 mx-auto border border-gray-200 max-w-md\"><ul class=\"flex-col text-md\"><li><strong><span class=\"text-xl\">💰 </span> Portfolio Value:</strong> ")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"text-center p-4 mb-4 mx-auto bg-stone-50 shadow-md rounded-lg max-w-md\"><ul class=\"flex-col text-md\"><li><strong><span class=\"text-xl\">💰 </span> Portfolio Value:</strong> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
