@@ -1,6 +1,7 @@
 package calc
 
 import (
+	"errors"
 	"math"
 	"strings"
 )
@@ -33,47 +34,85 @@ type DebtRecyclingData struct {
 	TotalValue            float64
 }
 
-func taxRate(salary float64, country string) float64 {
-	taxBrackets := []struct {
-		lowerBound   float64
-		upperBound   float64
-		marginalRate float64
-	}{}
-	switch strings.ToLower(country) {
-	case "au":
-		taxBrackets = []struct {
-			lowerBound   float64
-			upperBound   float64
-			marginalRate float64
-		}{
-			{0, 18200, 0},
-			{18201, 45000, 0.16},
-			{45001, 135000, 0.30},
-			{135001, 190000, 0.37},
-			{190001, math.MaxFloat64, 0.45},
-		}
-	case "nz":
-		taxBrackets = []struct {
-			lowerBound   float64
-			upperBound   float64
-			marginalRate float64
-		}{
-			{0, 14000, 0.105},
-			{14001, 48000, 0.175},
-			{48001, 70000, 0.30},
-			{70001, 180000, 0.33},
-			{180001, math.MaxFloat64, 0.39},
-		}
+type TaxBracket struct {
+	LowerBound   float64
+	UpperBound   float64
+	MarginalRate float64
+}
+
+type CountryBrackets []TaxBracket
+
+var countryBrackets = map[string]CountryBrackets{
+	"au": {
+		TaxBracket{
+			LowerBound:   0,
+			UpperBound:   18200,
+			MarginalRate: 0,
+		},
+		TaxBracket{
+			LowerBound:   18201,
+			UpperBound:   45000,
+			MarginalRate: 0.16,
+		},
+		TaxBracket{
+			LowerBound:   45001,
+			UpperBound:   135000,
+			MarginalRate: 0.30,
+		},
+		TaxBracket{
+			LowerBound:   135001,
+			UpperBound:   190000,
+			MarginalRate: 0.37,
+		},
+		TaxBracket{
+			LowerBound:   190001,
+			UpperBound:   math.MaxFloat64,
+			MarginalRate: .45,
+		},
+	},
+	"nz": {
+		TaxBracket{
+			LowerBound:   0,
+			UpperBound:   14000,
+			MarginalRate: 0.105,
+		},
+		TaxBracket{
+			LowerBound:   14001,
+			UpperBound:   48000,
+			MarginalRate: 0.175,
+		},
+		TaxBracket{
+			LowerBound:   48001,
+			UpperBound:   70000,
+			MarginalRate: 0.30,
+		},
+		TaxBracket{
+			LowerBound:   70001,
+			UpperBound:   180000,
+			MarginalRate: 0.33,
+		},
+		TaxBracket{
+			LowerBound:   180001,
+			UpperBound:   math.MaxFloat64,
+			MarginalRate: 0.39,
+		},
+	},
+}
+
+func taxRate(salary float64, country string) (float64, error) {
+	taxBrackets := countryBrackets[strings.ToLower(country)]
+	if taxBrackets == nil {
+		return 0, errors.New("unknown country")
 	}
 
 	for i := len(taxBrackets) - 1; i >= 0; i-- {
 		bracket := taxBrackets[i]
-		if salary > bracket.lowerBound {
-			return bracket.marginalRate
+		if salary > bracket.LowerBound {
+			return bracket.MarginalRate, nil
 		}
 	}
 
-	return 0
+	return 0, nil
 }
 
 func CAGR(initialValue, finalValue float64, numYears int) float64 {
@@ -83,7 +122,7 @@ func CAGR(initialValue, finalValue float64, numYears int) float64 {
 	return math.Pow(finalValue/initialValue, 1/float64(numYears)) - 1
 }
 
-func DebtRecycling(params DebtRecyclingParameters) *DebtRecyclingData {
+func DebtRecycling(params DebtRecyclingParameters) (*DebtRecyclingData, error) {
 	data := &DebtRecyclingData{}
 
 	// Pre-allocate slices with the correct size
@@ -129,7 +168,10 @@ func DebtRecycling(params DebtRecyclingParameters) *DebtRecyclingData {
 		)
 
 		// Calculate tax savings (adjusting for tax liability)
-		taxRate := taxRate((params.Salary + data.DividendReturns[year]), params.Country)
+		taxRate, err := taxRate((params.Salary + data.DividendReturns[year]), params.Country)
+		if err != nil {
+			return nil, err
+		}
 		data.TaxRefunds[year] = data.TaxDeductibleInterest[year] * (1 - taxRate)
 
 		// Accumulate tax savings
@@ -175,18 +217,5 @@ func DebtRecycling(params DebtRecyclingParameters) *DebtRecyclingData {
 	data.TotalValue = data.PortfolioValue[params.NumYears] + data.CumulativeTaxRefunds[params.NumYears-1] + data.CumulativeDividends[params.NumYears-1]
 	data.TotalInvested = params.InitialInvestment + (params.AnnualInvestment * float64(params.NumYears))
 
-	return data
-}
-
-func GeometricMean(rates []float64) float64 {
-	if len(rates) == 0 {
-		return 0
-	}
-
-	product := 1.0
-	for _, rate := range rates {
-		product *= 1 + rate
-	}
-
-	return math.Pow(product, 1/float64(len(rates))) - 1
+	return data, nil
 }

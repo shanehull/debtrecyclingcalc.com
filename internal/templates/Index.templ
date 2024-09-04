@@ -1,6 +1,9 @@
 package templates
 
-templ Index(form templ.Component, results templ.Component) {
+templ Index(hero templ.Component, form templ.Component, results templ.Component) {
+    <section id="hero" class="justify-center p-4">
+        @hero
+    </section>
     <section id="form" class="flex justify-center pt-4">
         @form
     </section>

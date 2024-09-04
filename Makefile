@@ -20,10 +20,3 @@ dev:
 	make templ-generate
 	go build -ldflags "-X debtrecyclingcalc.com/internal/buildinfo.GitTag=dev" \
 		-o ./tmp/main ./cmd/ && air
-
-.PHONY: build
-build:
-	make tailwind-build
-	make templ-generate
-	go build -ldflags "debtrecyclingcalc.com/internal/buildinfo.GitTag=$(git describe --tags)" \
-		-o ./bin/main ./cmd/

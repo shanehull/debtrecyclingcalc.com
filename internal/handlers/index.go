@@ -4,8 +4,6 @@ import (
 	"net/http"
 
 	"debtrecyclingcalc.com/internal/buildinfo"
-	"debtrecyclingcalc.com/internal/calc"
-	"debtrecyclingcalc.com/internal/charts"
 	"debtrecyclingcalc.com/internal/templates"
 )
 
@@ -15,25 +13,28 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := &calc.DebtRecyclingData{
-		PortfolioValue:  []float64{0},
-		DividendReturns: []float64{0},
-		TaxRefunds:      []float64{0},
-	}
-	params := &calc.DebtRecyclingParameters{}
+	if r.URL.Path != "/" {
+		w.WriteHeader(http.StatusNotFound)
 
-	lineChart, err := charts.StackedLineChart(data, params.NumYears)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		c := templates.NotFound()
+		err := templates.Layout(c, "Not Fountempl.WithStatus(http.StatusNotFound)d", buildinfo.GitTag, buildinfo.BuildDate).
+			Render(r.Context(), w)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+
 		return
 	}
 
-	index := templates.Index(templates.Form(), templates.Results(data, params, lineChart))
+	index := templates.Index(
+		templates.Hero(),
+		templates.Form(),
+		templates.Blank(),
+	)
 
-	err = templates.Layout(index, "Debt Recycling Calculator", buildinfo.GitTag, buildinfo.BuildDate).
+	err := templates.Layout(index, "Debt Recycling Calculator", buildinfo.GitTag, buildinfo.BuildDate).
 		Render(r.Context(), w)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
 	}
 }

@@ -1,0 +1,34 @@
+package templates
+
+import (
+    "debtrecyclingcalc.com/internal/charts"
+
+    echarts "github.com/go-echarts/go-echarts/v2/charts"
+)
+
+templ positions(chart *echarts.Line) {
+    <div class="mx-auto max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mt-4">
+        <h2 class="text-xl p-4 text-center">
+            Positions
+        </h2>
+        @charts.ChartToTemplComponent(chart)
+    </div>
+}
+
+templ income(chart *echarts.Bar) {
+    <div class="mx-auto max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mt-4">
+        <h2 class="text-xl p-4 text-center">
+            Cash Flow
+        </h2>
+        @charts.ChartToTemplComponent(chart)
+    </div>
+}
+
+templ interest(chart *echarts.Bar) {
+    <div class="mx-auto max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mt-4">
+        <h2 class="text-xl p-4 text-center">
+            Interest Split
+        </h2>
+        @charts.ChartToTemplComponent(chart)
+    </div>
+}

@@ -5,9 +5,35 @@ import (
     echarts "github.com/go-echarts/go-echarts/v2/charts"
 )
 
-templ Results(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters, lchart *echarts.Line)  {
-    @metrics(data, params)
-    @table(data, params.NumYears)
-    @cards(data, params.NumYears)
-    @lineChart(lchart)
+templ Results(
+    data *calc.DebtRecyclingData, 
+    params *calc.DebtRecyclingParameters, 
+    positionsChart *echarts.Line, 
+    incomeChart *echarts.Bar,
+    interestChart *echarts.Bar,
+)  {
+    <div class="mt-4">
+        <h1 class="text-2xl font-bold mb-4 text-center underline">
+            Key Metrics
+        </h1>
+        @metrics(data, params)
+    </div>
+    <br>
+    <div class="mt-4">
+        <h1 class="text-2xl font-bold mb-4 text-center underline">
+            Yearly Breakdown
+        </h1>
+        @table(data, params.NumYears)
+        @cards(data, params.NumYears)
+    </div>
+    <br>
+    <div class="mt-4">
+        <h1 class="text-2xl font-bold mb-4 text-center underline">
+            Charts
+        </h1>
+            @positions(positionsChart)
+            @income(incomeChart)
+            @interest(interestChart)
+    </div>
+    <br>
 }

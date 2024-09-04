@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -13,7 +12,6 @@ import (
 func CalcHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
-		return
 	}
 
 	// Parse the form data
@@ -81,19 +79,35 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 		Country:              country,
 	}
 
-	data := calc.DebtRecycling(*params)
-
-	lineChart, err := charts.StackedLineChart(data, params.NumYears)
+	// if params is empty respond with error
+	data, err := calc.DebtRecycling(*params)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	results := templates.Results(data, params, lineChart)
+	positionsChart, err := charts.Positions(data, params.NumYears, r.Context())
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	incomeChart, err := charts.Income(data, params.NumYears, r.Context())
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	interestChart, err := charts.Interest(data, params.NumYears, r.Context())
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	results := templates.Results(data, params, positionsChart, incomeChart, interestChart)
 
 	err = results.Render(r.Context(), w)
 	if err != nil {
-		fmt.Println(err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
