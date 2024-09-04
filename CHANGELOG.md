@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.2](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.1...v0.0.2) (2024-09-04)
+
+
+### Bug Fixes
+
+* cloud build config ([7fdaf13](https://github.com/shanehull/debtrecyclingcalc.com/commit/7fdaf130311336d97155be3c0f81dd5fb4d585c5))
+
 ## [0.0.1](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.1...v0.0.1) (2024-09-04)
 
 
