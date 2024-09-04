@@ -69,13 +69,13 @@ templ footer(gitTag string, buildDate string) {
 templ Layout(contents templ.Component, title string, gitTag string, buildDate string) {
     <!DOCTYPE html>
     <html lang="en">
-    @head(title)
-    <body class="bg-white flex-col min-h-screen w-full font-mono">
-    @header()
-    <main class="bg-stone-200 flex-col w-full mx-auto">
+        @head(title)
+    <body class="flex-col min-h-screen w-full font-mono">
+        @header()
+    <main class="bg-stone-200 flex-col w-full mx-auto p-4">
         @contents
     </main>
     </body>
-    @footer(gitTag, buildDate)
+        @footer(gitTag, buildDate)
     </html>
 }

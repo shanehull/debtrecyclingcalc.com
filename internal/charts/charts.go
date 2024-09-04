@@ -26,13 +26,15 @@ type Renderer interface {
 }
 
 var baseTpl = `
-<div class="container mx-auto">
-    <div id="{{ .ChartID }}" class="echarts-chart-wrapper"></div>
-</div>
+<div id="{{ .ChartID }}" class="echarts-chart-wrapper"></div>
 <script type="text/javascript" nonce="{{ getScriptNonce }}">
     "use strict";
-    let goecharts_{{ .ChartID | safeJS }} = echarts.init(document.getElementById(
-        '{{ .ChartID | safeJS }}'), "{{ .Theme }}", { renderer: {{ .Initialization.Renderer }} }
+    let goecharts_{{ .ChartID | safeJS }} = echarts.init(
+        document.getElementById('{{ .ChartID | safeJS }}'),
+            "{{ .Theme }}",
+            { 
+                renderer: "{{ .Initialization.Renderer }}", 
+            },
     );
     let option_{{ .ChartID | safeJS }} = {{ .JSON }};
     goecharts_{{ .ChartID | safeJS }}.setOption(option_{{ .ChartID | safeJS }});
