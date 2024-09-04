@@ -40,11 +40,11 @@ options:
   substitutionOption: ALLOW_LOOSE
   logging: CLOUD_LOGGING_ONLY
 substitutions:
-  _TRIGGER_ID: 05f9657f-0539-44cb-ad96-d4bc8e804bff
-  _SERVICE_NAME: debtrecyclingcalc-com
-  _DEPLOY_REGION: australia-southeast2
-  _AR_HOSTNAME: australia-southeast2-docker.pkg.dev
+  _AR_HOSTNAME: asia-southeast1-docker.pkg.dev
   _PLATFORM: managed
+  _TRIGGER_ID: 526fbf8e-06f6-45e9-b30a-3620cf61aa0d
+  _SERVICE_NAME: debtrecyclingcalc-com
+  _DEPLOY_REGION: asia-southeast1
 tags:
   - gcp-cloud-build-deploy-cloud-run
   - gcp-cloud-build-deploy-cloud-run-managed
