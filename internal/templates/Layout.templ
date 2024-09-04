@@ -25,7 +25,15 @@ templ head(title string) {
         <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="static/css/style.min.css" />
         <style nonce={ middleware.GetInlineStyleNonce(ctx) }>
-        .echarts-chart-wrapper {height: 28rem;}
+        .echarts-chart-wrapper {
+            height: 18rem;
+        }
+        
+        @media (min-width: 640px) {
+            .echarts-chart-wrapper {
+                height: 31.25rem;
+            }
+        }
         </style>
     </head>
 }
