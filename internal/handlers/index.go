@@ -34,6 +34,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		AnnualInvestment:     50000,
 		MortgageSize:         600000,
 		MortgageInterestRate: 0.05,
+		DividendReturnRate:   0.02,
 		CapitalGrowthRate:    0.08,
 		NumYears:             10,
 		Country:              "au",
