@@ -21,8 +21,3 @@ dev:
 	go build -ldflags "-X debtrecyclingcalc.com/internal/buildinfo.GitTag=dev" \
 		-o ./tmp/main ./cmd/ && air
 
-.PHONY: build
-GIT_TAG := $$(git describe --tags --exact-match 2>/dev/null || git rev-parse --abbrev-ref HEAD)
-build:
-	go build -ldflags "debtrecyclingcalc.com/internal/buildinfo.GitTag=$(git describe --tags --exact-match 2>/dev/null || git rev-parse --abbrev-ref HEAD)" \
-		-o ./bin/main ./cmd/
