@@ -9,7 +9,7 @@ RUN update-ca-certificates
 
 RUN go install github.com/a-h/templ/cmd/templ@latest
 
-ARG GIT_TAG="unknown"
+ARG GIT_TAG=$(git describe --tags --exact-match 2>/dev/null || git rev-parse --abbrev-ref HEAD)
 
 RUN GO_ENABLED=0 GOOS=linux go build \
     -ldflags "-X debtrecyclingcalc.com/internal/buildinfo.GitTag=${GIT_TAG}"\
