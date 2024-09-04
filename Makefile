@@ -24,9 +24,5 @@ dev:
 .PHONY: build
 GIT_TAG := $$(git describe --tags --exact-match 2>/dev/null || git rev-parse --abbrev-ref HEAD)
 build:
-	@echo "Current GIT_TAG: $(GIT_TAG)"
-	go install github.com/a-h/templ/cmd/templ@latest
-	@$(MAKE) tailwind-build
-	@$(MAKE) templ-generate
 	go build -ldflags "debtrecyclingcalc.com/internal/buildinfo.GitTag=$(git describe --tags --exact-match 2>/dev/null || git rev-parse --abbrev-ref HEAD)" \
 		-o ./bin/main ./cmd/
