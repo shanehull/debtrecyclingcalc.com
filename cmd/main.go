@@ -23,17 +23,24 @@ var (
 	htmxHash        = "sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
 	hyperscriptHash = "sha384-+Uth1QzYJsTjnS5SXVN3fFO4I32Y571xIuv53WJ2SA7y5/36tKU1VCutONAmg5eH"
 	echartsHash     = "sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
+	logger          *slog.Logger
 )
 
+func init() {
+	logger = slog.New(
+		slog.NewJSONHandler(
+			os.Stdout, nil,
+		),
+	).With(slog.String("version", buildinfo.GitTag))
+	slog.SetDefault(logger)
+}
+
 func main() {
-	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
 	ctx, cancel := signal.NotifyContext(
 		context.Background(),
 		os.Interrupt,
 		syscall.SIGTERM,
 	)
-
-	fmt.Println("gitTag", buildinfo.GitTag)
 
 	// If the SERVER_HOST env var is set, use that
 	envHost, ok := os.LookupEnv("SERVER_HOST")
