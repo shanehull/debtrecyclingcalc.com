@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.0.4](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.3...v0.0.4) (2024-09-05)
+
+
+### Bug Fixes
+
+* charts height on mobile ([4f504af](https://github.com/shanehull/debtrecyclingcalc.com/commit/4f504afc2838db1d15106927a58540194e20ab82))
+* further reading margins ([dc34aae](https://github.com/shanehull/debtrecyclingcalc.com/commit/dc34aaee2831f32cc665593286beab8a185fd7ea))
+* match cards style to table ([7ff869a](https://github.com/shanehull/debtrecyclingcalc.com/commit/7ff869afc3ed8d334072f744b8f58b8bc1b2b70a))
+* mobile cards as tables ([34429b5](https://github.com/shanehull/debtrecyclingcalc.com/commit/34429b53dd1b7d1d5e5615c781cadd302bfaea14))
+* typos and wording ([9762a4d](https://github.com/shanehull/debtrecyclingcalc.com/commit/9762a4df25a6f16ff0ecace71ad1aac59e8034bc))
+
 ## [0.0.3](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.2...v0.0.3) (2024-09-04)
 
 
