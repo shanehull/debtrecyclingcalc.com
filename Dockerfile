@@ -11,7 +11,7 @@ RUN go install github.com/a-h/templ/cmd/templ@latest
 
 ARG GIT_TAG="unknown"
 
-RUN GO_ENABLED=0 GOOS=linux go build \
+RUN CGO_ENABLED=0 GOOS=linux go build \
     -ldflags "-X debtrecyclingcalc.com/internal/buildinfo.GitTag=${GIT_TAG}"\
     -o ./bin/main ./cmd/
 
