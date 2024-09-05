@@ -4,10 +4,19 @@ WORKDIR /app
 
 COPY . .
 
-RUN apk update && apk upgrade && apk add --no-cache ca-certificates
+RUN apk update && apk upgrade && apk add --no-cache ca-certificates curl
 RUN update-ca-certificates
 
 RUN go install github.com/a-h/templ/cmd/templ@latest
+
+RUN curl -sLO \
+    https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+
+RUN mv tailwindcss-linux-x64 tailwindcss && chmod +x tailwindcss
+
+RUN templ generate
+
+RUN ./tailwindcss -i ./static/css/input.css -o ./static/css/style.min.css --minify
 
 ARG GIT_TAG="unknown"
 
