@@ -32,25 +32,25 @@ func cards(data *calc.DebtRecyclingData, years int) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"block sm:hidden sm:grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 text-center\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"block md:hidden md:grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 text-center\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for year := 0; year < years; year++ {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-stone-50 shadow-xl rounded-lg mx-auto p-4 mb-4 max-w-sm\"><div class=\"mb-2 text-center\"><h2 class=\"text-2xl font-bold\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-stone-50 shadow-xl rounded-lg mx-auto p-4 mb-4 max-w-sm\"><div class=\"mb-2 text-center\"><h2 class=\"text-xl md:text-2xl font-bold\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("Year %d", year+1))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 14, Col: 75}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 14, Col: 86}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h2></div><table class=\"bg-white shadow-lg rounded-lg border-separate table-auto max-w-sm mx-auto\"><tbody><tr><th class=\"bg-gray-200 px-4 py-2 border text-left\">Debt Recycled</th><td class=\"px-4 py-2 border text-right\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h2></div><table class=\"bg-white shadow-lg rounded-lg border-separate table-auto max-w-sm mx-auto text-sm\"><tbody><tr><th class=\"bg-gray-200 px-4 py-2 border text-left\">Debt Recycled</th><td class=\"px-4 py-2 border text-right\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
