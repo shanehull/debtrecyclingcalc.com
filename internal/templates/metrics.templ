@@ -32,15 +32,16 @@ func printHumanInt(value int) string {
 }
 
 templ metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters) {
-    <div class="text-center mb-4 mx-auto border border-gray-200 max-w-md">
-      <ul class="flex-col text-md">
+    <div class="text-center p-4 mb-4 mx-auto bg-stone-50 shadow-md rounded-lg max-w-md">
+      <ul class="flex-col text-sm md:text-lg">
         <li>
             <strong>
                 <span class="text-xl">
                 💰 
                 </span>
                 Portfolio Value:
-            </strong> { fmt.Sprintf("$%s", printHumanInt(int(data.PortfolioValue[getYearsIndex(params.NumYears)]))) }
+            </strong>
+            { fmt.Sprintf("$%s", printHumanInt(int(data.PortfolioValue[getYearsIndex(params.NumYears)]))) }
         </li>
         <li>
             <strong>
@@ -49,7 +50,8 @@ templ metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters
                 💵 
                 </span>
                 Year { fmt.Sprintf("%d", params.NumYears) } Dividends:
-                </strong> { fmt.Sprintf("$%s", printHumanInt(int(data.DividendReturns[getYearsIndex(params.NumYears)]))) }
+                </strong>
+                { fmt.Sprintf("$%s", printHumanInt(int(data.DividendReturns[getYearsIndex(params.NumYears)]))) }
         </li>
         <li>
             <strong>
@@ -57,7 +59,8 @@ templ metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters
                 🏦 
                 </span>
                 Year { fmt.Sprintf("%d", params.NumYears) } Tax Refund:
-            </strong> { fmt.Sprintf("$%s", printHumanInt(int(data.TaxRefunds[getYearsIndex(params.NumYears)]))) }
+            </strong>
+            { fmt.Sprintf("$%s", printHumanInt(int(data.TaxRefunds[getYearsIndex(params.NumYears)]))) }
         </li>
         <li>
             <strong>
@@ -65,7 +68,8 @@ templ metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters
                 ✅ 
                 </span>
                 Net Positive In:
-            </strong> { fmt.Sprintf("%d years", getFirstPositiveYear(data.NetPosition)) }
+            </strong>
+            { fmt.Sprintf("%d years", getFirstPositiveYear(data.NetPosition)) }
         </li>
         <li>
             <strong>
@@ -73,7 +77,8 @@ templ metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters
                 📈 
                 </span>
                 CAGR:
-            </strong> { fmt.Sprintf("%.2f", calc.CAGR(data.TotalInvested,data.TotalValue,params.NumYears)*100) }%
+            </strong>
+            { fmt.Sprintf("%.2f", calc.CAGR(data.TotalInvested,data.TotalValue,params.NumYears)*100) }%
         </li>
       </ul>
     </div>

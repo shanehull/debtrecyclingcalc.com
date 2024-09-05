@@ -39,12 +39,6 @@ images:
 options:
   substitutionOption: ALLOW_LOOSE
   logging: CLOUD_LOGGING_ONLY
-substitutions:
-  _AR_HOSTNAME: asia-southeast1-docker.pkg.dev
-  _PLATFORM: managed
-  _SERVICE_NAME: debtrecyclingcalc-com
-  _TRIGGER_ID: 93a46c28-1716-41da-b9f4-7685f759349d
-  _DEPLOY_REGION: asia-southeast1
 tags:
   - gcp-cloud-build-deploy-cloud-run
   - gcp-cloud-build-deploy-cloud-run-managed

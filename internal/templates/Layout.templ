@@ -25,20 +25,28 @@ templ head(title string) {
         <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="static/css/style.min.css" />
         <style nonce={ middleware.GetInlineStyleNonce(ctx) }>
-        .echarts-chart-wrapper {height: 28rem;}
+        .echarts-chart-wrapper {
+            height: 18rem;
+        }
+        
+        @media (min-width: 640px) {
+            .echarts-chart-wrapper {
+                height: 31.25rem;
+            }
+        }
         </style>
     </head>
 }
 
 templ header() {
-    <header class="bg-white text-center py-8 w-full top-0">
+    <header class="bg-stone-50 text-center py-8 w-full top-0">
         <h1 class="text-xl md:text-3xl font-extrabold"><a href="/">Debt Recycling Calculator</a></h1>
     </header>
 }
 
 
 templ footer(gitTag string, buildDate string) {
-    <footer class="bg-white py-8 text-center bottom-0">
+    <footer class="bg-stone-50 py-8 text-center bottom-0">
         <p class="text-sm p-4">
             Made with <span class="font-sans">❤️</span> by <a href="https://shanehull.com" target="_blank" class="text-blue-600 hover:underline">Shane Hull</a>
         </p>
@@ -69,13 +77,13 @@ templ footer(gitTag string, buildDate string) {
 templ Layout(contents templ.Component, title string, gitTag string, buildDate string) {
     <!DOCTYPE html>
     <html lang="en">
-    @head(title)
-    <body class="bg-white flex-col min-h-screen w-full font-mono">
-    @header()
-    <main class="bg-stone-200 flex-col w-full mx-auto">
+        @head(title)
+    <body class="flex-col min-h-screen w-full font-mono">
+        @header()
+    <main class="bg-stone-200 flex-col w-full mx-auto p-4">
         @contents
     </main>
     </body>
-    @footer(gitTag, buildDate)
+        @footer(gitTag, buildDate)
     </html>
 }
