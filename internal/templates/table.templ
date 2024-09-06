@@ -8,30 +8,38 @@ import (
 
 templ table(data *calc.DebtRecyclingData, years int) {
     <div class="hidden md:block">
-       <table class="bg-white shadow-md rounded-lg mb-4 mx-auto border-separate table-auto max-w-lg mx-auto">
+       <table class="bg-stone-50 shadow-md mb-4 mx-auto rounded-lg striped border-separate spacing-0 table-columns-right table-auto max-w-lg mx-auto">
            <thead>
-               <tr class="bg-gray-200 border sm:text-sm">
-                   <th class="bg-grey-100 px-4 py-2 border">Year</th>
-                   <th class="bg-grey-100 px-4 py-2 border">Debt Recycled</th>
-                   <th class="bg-grey-100 px-4 py-2 border">Non-Deductible Interest</th>
-                   <th class="bg-grey-100 px-4 py-2 border">Tax-Deductible Interest</th>
-                   <th class="bg-grey-100 px-4 py-2 border">Tax Savings</th>
-                   <th class="bg-grey-100 px-4 py-2 border">Dividends</th>
-                   <th class="bg-grey-100 px-4 py-2 border">Portfolio Value</th>
-                   <th class="bg-grey-100 px-4 py-2 border">Net Position</th>
+               <tr class="border sm:text-sm">
+                   <th class="bg-gray-200 px-4 py-2 border rounded-tl-lg">Year</th>
+                   <th class="bg-gray-200 px-4 py-2 border">Debt Recycled</th>
+                   <th class="bg-gray-200 px-4 py-2 border">Non-Deductible Interest</th>
+                   <th class="bg-gray-200 px-4 py-2 border">Tax-Deductible Interest</th>
+                   <th class="bg-gray-200 px-4 py-2 border">Tax Savings</th>
+                   <th class="bg-gray-200 px-4 py-2 border">Dividends</th>
+                   <th class="bg-gray-200 px-4 py-2 border">Portfolio Value</th>
+                   <th class="bg-gray-200 px-4 py-2 border rounded-tr-lg">Net Position</th>
                </tr>
            </thead>
-           <tbody>
+           <tbody> 
            for year := 0; year < years; year++ {
                <tr>
-                   <td class="px-4 py-2 border">{ fmt.Sprintf("%d", year+1) }</td>
+               if year == years-1 {
+                    <td class="px-4 py-2 border rounded-bl-lg">{ fmt.Sprintf("%d", year+1) }</td>
+                } else {
+                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", year+1) }</td>
+                }
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.DebtRecycled[year])) }</td>
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.NonDeductibleInterest[year])) }</td>
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.TaxDeductibleInterest[year])) }</td>
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.TaxRefunds[year])) }</td>
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.DividendReturns[year])) }</td>
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.PortfolioValue[year])) }</td>
+               if year == years-1 {
+                   <td class="px-4 py-2 border rounded-br-lg">{ fmt.Sprintf("%d", int(data.NetPosition[year])) }</td>
+                } else {
                    <td class="px-4 py-2 border">{ fmt.Sprintf("%d", int(data.NetPosition[year])) }</td>
+                }
                </tr>
            }
            </tbody>

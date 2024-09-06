@@ -9,38 +9,40 @@ import (
 templ cards(data *calc.DebtRecyclingData, years int) {
     <div class="block md:hidden md:grid gap-4 text-center">
       for year := 0; year < years;year++ {
-      <table class="bg-white shadow-md rounded-lg mb-4 mx-auto border-separate table-auto max-w-lg mx-auto text-sm">
+      <table class="bg-stone-50 shadow-md mb-4 mx-auto rounded-lg striped border-separate spacing-0 table-columns-right table-auto max-w-lg mx-auto text-sm">
         <tbody>
           <tr>
-            <th colspan="2" class="px-4 py-2 border"><h2 class="text-xl md:text-2xl font-bold">{ fmt.Sprintf("Year %d", year+1) }</h2></th>
+            <th colspan="2" class="bg-gray-200 px-4 py-2 border rounded-t-lg">
+                <h2 class="text-xl md:text-2xl font-bold">{ fmt.Sprintf("Year %d", year+1) }</h2>
+            </th>
           </tr>
           <tr>
-            <th class="bg-gray-200 px-4 py-2 border text-left">Debt Recycled</th>
+            <th class="px-4 py-2 border text-left">Debt Recycled</th>
             <td class="px-4 py-2 border text-right">{ fmt.Sprintf("%d", int(data.DebtRecycled[year])) }</td>
           </tr>
           <tr>
-            <th class="bg-gray-200 px-4 py-2 border text-left">Non-Deductible Interest</th>
+            <th class="px-4 py-2 border text-left">Non-Deductible Interest</th>
             <td class="px-4 py-2 border text-right">{ fmt.Sprintf("%d", int(data.NonDeductibleInterest[year])) }</td>
           </tr>
           <tr>
-            <th class="bg-gray-200 px-4 py-2 border text-left">Tax-Deductible Interest</th>
+            <th class="px-4 py-2 border text-left">Tax-Deductible Interest</th>
             <td class="px-4 py-2 border text-right">{ fmt.Sprintf("%d", int(data.TaxDeductibleInterest[year])) }</td>
           </tr>
           <tr>
-            <th class="bg-gray-200 px-4 py-2 border text-left">Tax Savings</th>
+            <th class="px-4 py-2 border text-left">Tax Savings</th>
             <td class="px-4 py-2 border text-right">{ fmt.Sprintf("%d", int(data.TaxRefunds[year])) }</td>
           </tr>
           <tr>
-            <th class="bg-gray-200 px-4 py-2 border text-left">Dividends</th>
+            <th class="px-4 py-2 border text-left">Dividends</th>
             <td class="px-4 py-2 border text-right">{ fmt.Sprintf("%d", int(data.DividendReturns[year])) }</td>
           </tr>
           <tr>
-            <th class="bg-gray-200 px-4 py-2 border text-left">Portfolio Value</th>
+            <th class="px-4 py-2 border text-left">Portfolio Value</th>
             <td class="px-4 py-2 border text-right">{ fmt.Sprintf("%d", int(data.PortfolioValue[year])) }</td>
           </tr>
           <tr>
-            <th class="bg-gray-200 px-4 py-2 border text-left">Net Position</th>
-            <td class="px-4 py-2 border text-right">{ fmt.Sprintf("%d", int(data.NetPosition[year])) }</td>
+            <th class="px-4 py-2 border text-left rounded-bl-lg">Net Position</th>
+            <td class="px-4 py-2 border text-right rounded-br-lg">{ fmt.Sprintf("%d", int(data.NetPosition[year])) }</td>
           </tr>
         </tbody>
       </table>
