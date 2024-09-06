@@ -37,105 +37,105 @@ func cards(data *calc.DebtRecyclingData, years int) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		for year := 0; year < years; year++ {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<table class=\"bg-white shadow-md rounded-lg mb-4 mx-auto border-separate table-auto max-w-lg mx-auto text-sm\"><tbody><tr><th colspan=\"2\" class=\"px-4 py-2 border\"><h2 class=\"text-xl md:text-2xl font-bold\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<table class=\"bg-stone-50 shadow-md mb-4 mx-auto rounded-lg striped border-separate spacing-0 table-columns-right table-auto max-w-lg mx-auto text-sm\"><tbody><tr><th colspan=\"2\" class=\"bg-gray-200 px-4 py-2 border rounded-t-lg\"><h2 class=\"text-xl md:text-2xl font-bold\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("Year %d", year+1))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 15, Col: 127}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 16, Col: 90}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h2></th></tr><tr><th class=\"bg-gray-200 px-4 py-2 border text-left\">Debt Recycled</th><td class=\"px-4 py-2 border text-right\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h2></th></tr><tr><th class=\"px-4 py-2 border text-left\">Debt Recycled</th><td class=\"px-4 py-2 border text-right\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(data.DebtRecycled[year])))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 19, Col: 101}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 21, Col: 101}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"bg-gray-200 px-4 py-2 border text-left\">Non-Deductible Interest</th><td class=\"px-4 py-2 border text-right\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"px-4 py-2 border text-left\">Non-Deductible Interest</th><td class=\"px-4 py-2 border text-right\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(data.NonDeductibleInterest[year])))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 23, Col: 110}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 25, Col: 110}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"bg-gray-200 px-4 py-2 border text-left\">Tax-Deductible Interest</th><td class=\"px-4 py-2 border text-right\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"px-4 py-2 border text-left\">Tax-Deductible Interest</th><td class=\"px-4 py-2 border text-right\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(data.TaxDeductibleInterest[year])))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 27, Col: 110}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 29, Col: 110}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"bg-gray-200 px-4 py-2 border text-left\">Tax Savings</th><td class=\"px-4 py-2 border text-right\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"px-4 py-2 border text-left\">Tax Savings</th><td class=\"px-4 py-2 border text-right\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(data.TaxRefunds[year])))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 31, Col: 99}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 33, Col: 99}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"bg-gray-200 px-4 py-2 border text-left\">Dividends</th><td class=\"px-4 py-2 border text-right\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"px-4 py-2 border text-left\">Dividends</th><td class=\"px-4 py-2 border text-right\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var7 string
 			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(data.DividendReturns[year])))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 35, Col: 104}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 37, Col: 104}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"bg-gray-200 px-4 py-2 border text-left\">Portfolio Value</th><td class=\"px-4 py-2 border text-right\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"px-4 py-2 border text-left\">Portfolio Value</th><td class=\"px-4 py-2 border text-right\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var8 string
 			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(data.PortfolioValue[year])))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 39, Col: 103}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 41, Col: 103}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"bg-gray-200 px-4 py-2 border text-left\">Net Position</th><td class=\"px-4 py-2 border text-right\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</td></tr><tr><th class=\"px-4 py-2 border text-left rounded-bl-lg\">Net Position</th><td class=\"px-4 py-2 border text-right rounded-br-lg\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var9 string
 			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(data.NetPosition[year])))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 43, Col: 100}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/cards.templ`, Line: 45, Col: 114}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {

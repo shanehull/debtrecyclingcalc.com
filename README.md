@@ -8,9 +8,9 @@ This project is a debt recycling calculator built with Go, Templ, Tailwind CSS a
 
 **Features:**
 
-- Calculate debt recycling scenarios with configurable options;
-  investment amounts, growth rates, and reinvestment of cash flow.
-- Automatically adjusts for tax liabilities based on salary, country and dividends income.
+- Calculate and compare debt recycling scenarios with configurable options;
+  investment amounts, growth rates, and reinvestment of cash flows.
+- Automatically adjusts for tax liabilities based on salary, country and dividend income.
 
 **Technology Stack:**
 
@@ -33,4 +33,4 @@ It also does not take into account franking credits, or the (hopefully) increasi
 
 > _"It is better to be roughly right than precisely wrong."_
 >
-> -- <cite>John Manyard Keynes</cite>
+> \- <cite>John Manyard Keynes</cite>
