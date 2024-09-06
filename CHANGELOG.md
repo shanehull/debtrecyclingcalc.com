@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.5](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.4...v0.0.5) (2024-09-06)
+
+
+### Bug Fixes
+
+* tables that don't look like some microsoft product ([#9](https://github.com/shanehull/debtrecyclingcalc.com/issues/9)) ([9c32256](https://github.com/shanehull/debtrecyclingcalc.com/commit/9c32256fb67e4a9ad1aae2472efa7d10dbb76721))
+
 ## [0.0.4](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.3...v0.0.4) (2024-09-05)
 
 
