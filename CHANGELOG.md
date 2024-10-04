@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.6](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.5...v0.0.6) (2024-10-04)
+
+
+### Bug Fixes
+
+* typos ([#11](https://github.com/shanehull/debtrecyclingcalc.com/issues/11)) ([b93f544](https://github.com/shanehull/debtrecyclingcalc.com/commit/b93f544e66137ecc37f0eba27ffde2bbc2499499))
+
 ## [0.0.5](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.4...v0.0.5) (2024-09-06)
 
 
