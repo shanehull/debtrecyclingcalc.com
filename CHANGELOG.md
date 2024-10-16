@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.6...v0.1.0) (2024-10-16)
+
+
+### Features
+
+* sharable parameterized links ([#13](https://github.com/shanehull/debtrecyclingcalc.com/issues/13)) ([789b5e6](https://github.com/shanehull/debtrecyclingcalc.com/commit/789b5e681ef0537a680731af18845cc67920525c))
+
 ## [0.0.6](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.5...v0.0.6) (2024-10-04)
 
 
