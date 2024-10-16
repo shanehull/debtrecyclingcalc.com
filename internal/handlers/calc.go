@@ -1,8 +1,8 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
-	"strconv"
 
 	"debtrecyclingcalc.com/internal/calc"
 	"debtrecyclingcalc.com/internal/charts"
@@ -21,71 +21,10 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	salary, err := strconv.ParseFloat(r.Form.Get("salary"), 64)
+	params, err := getFormParams(r)
 	if err != nil {
-		http.Error(w, "error parsing salary", http.StatusBadRequest)
+		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
-	}
-
-	inititalInvestmentAmount, err := strconv.ParseFloat(r.Form.Get("initial_investment"), 64)
-	if err != nil {
-		http.Error(w, "error parsing initial investment amount", http.StatusBadRequest)
-		return
-	}
-
-	annualInvestmentAmount, err := strconv.ParseFloat(r.Form.Get("annual_investment"), 64)
-	if err != nil {
-		http.Error(w, "error parsing annual investment amount", http.StatusBadRequest)
-		return
-	}
-
-	mortgageSize, err := strconv.ParseFloat(r.Form.Get("mortgage_size"), 64)
-	if err != nil {
-		http.Error(w, "error parsing mortgage size", http.StatusBadRequest)
-		return
-	}
-
-	mortgageInterestRate, err := strconv.ParseFloat(r.Form.Get("mortgage_interest_rate"), 64)
-	if err != nil {
-		http.Error(w, "error parsing mortgage interest rate", http.StatusBadRequest)
-		return
-	}
-
-	dividendReturnRate, err := strconv.ParseFloat(r.Form.Get("dividend_return_rate"), 64)
-	if err != nil {
-		http.Error(w, "error parsing dividend return rate", http.StatusBadRequest)
-		return
-	}
-
-	capitalGrowthRate, err := strconv.ParseFloat(r.Form.Get("capital_growth_rate"), 64)
-	if err != nil {
-		http.Error(w, "error parsing capital growth rate", http.StatusBadRequest)
-		return
-	}
-
-	years, err := strconv.Atoi(r.Form.Get("years"))
-	if err != nil {
-		http.Error(w, "error parsing years", http.StatusBadRequest)
-		return
-	}
-
-	country := r.Form.Get("country")
-
-	reinvestDividends := r.Form.Get("reinvest_dividends") == "on"
-	reinvestTaxRefunds := r.Form.Get("reinvest_tax_refunds") == "on"
-
-	params := &calc.DebtRecyclingParameters{
-		Salary:               salary,
-		InitialInvestment:    inititalInvestmentAmount,
-		AnnualInvestment:     annualInvestmentAmount,
-		MortgageSize:         mortgageSize,
-		MortgageInterestRate: mortgageInterestRate / 100,
-		DividendReturnRate:   dividendReturnRate / 100,
-		CapitalGrowthRate:    capitalGrowthRate / 100,
-		NumYears:             years,
-		Country:              country,
-		ReinvestDividends:    reinvestDividends,
-		ReinvestTaxRefunds:   reinvestTaxRefunds,
 	}
 
 	// if params is empty respond with error
@@ -114,6 +53,31 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	results := templates.Results(data, params, positionsChart, incomeChart, interestChart)
+
+	w.Header().
+		Set("HX-Push-Url", fmt.Sprintf("/?salary=%.2f"+
+			"&initial_investment=%.2f"+
+			"&annual_investment=%.2f"+
+			"&mortgage_size=%.2f"+
+			"&mortgage_interest_rate=%.2f"+
+			"&dividend_return_rate=%.2f"+
+			"&capital_growth_rate=%.2f"+
+			"&years=%d"+
+			"&country=%s"+
+			"&reinvest_dividends=%t"+
+			"&reinvest_tax_refunds=%t",
+			params.Salary,
+			params.InitialInvestment,
+			params.AnnualInvestment,
+			params.MortgageSize,
+			params.MortgageInterestRate*100,
+			params.DividendReturnRate*100,
+			params.CapitalGrowthRate*100,
+			params.NumYears,
+			params.Country,
+			params.ReinvestDividends,
+			params.ReinvestTaxRefunds,
+		))
 
 	err = results.Render(r.Context(), w)
 	if err != nil {

@@ -94,7 +94,7 @@ func ChartToTemplComponent(chart Renderable) templ.Component {
 }
 
 func Positions(
-	data *calc.DebtRecyclingData,
+	data *calc.Data,
 	years int,
 	ctx context.Context,
 ) (*echarts.Line, error) {
@@ -184,7 +184,7 @@ func Positions(
 	return line, nil
 }
 
-func Income(data *calc.DebtRecyclingData, years int, ctx context.Context) (*echarts.Bar, error) {
+func Income(data *calc.Data, years int, ctx context.Context) (*echarts.Bar, error) {
 	bar := echarts.NewBar()
 
 	styleNonce := middleware.GetInlineStyleNonce(ctx)
@@ -259,7 +259,7 @@ func Income(data *calc.DebtRecyclingData, years int, ctx context.Context) (*echa
 	return bar, nil
 }
 
-func Interest(data *calc.DebtRecyclingData, years int, ctx context.Context) (*echarts.Bar, error) {
+func Interest(data *calc.Data, years int, ctx context.Context) (*echarts.Bar, error) {
 	bar := echarts.NewBar()
 
 	styleNonce := middleware.GetInlineStyleNonce(ctx)

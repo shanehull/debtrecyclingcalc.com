@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-type DebtRecyclingParameters struct {
+type Parameters struct {
 	Salary               float64
 	InitialInvestment    float64
 	AnnualInvestment     float64
@@ -20,7 +20,7 @@ type DebtRecyclingParameters struct {
 	ReinvestTaxRefunds   bool
 }
 
-type DebtRecyclingData struct {
+type Data struct {
 	DebtRecycled          []float64
 	NonDeductibleInterest []float64
 	TaxDeductibleInterest []float64
@@ -122,8 +122,8 @@ func CAGR(initialValue, finalValue float64, numYears int) float64 {
 	return math.Pow(finalValue/initialValue, 1/float64(numYears)) - 1
 }
 
-func DebtRecycling(params DebtRecyclingParameters) (*DebtRecyclingData, error) {
-	data := &DebtRecyclingData{}
+func DebtRecycling(params Parameters) (*Data, error) {
+	data := &Data{}
 
 	// Pre-allocate slices with the correct size
 	data.DebtRecycled = make([]float64, params.NumYears)

@@ -31,7 +31,7 @@ func printHumanInt(value int) string {
     return p.Sprintf("%d", value)
 }
 
-templ metrics(data *calc.DebtRecyclingData, params *calc.DebtRecyclingParameters) {
+templ metrics(data *calc.Data, params *calc.Parameters) {
     <div class="text-center p-4 mb-4 mx-auto bg-stone-50 shadow-md rounded-lg max-w-md">
       <ul class="flex-col text-sm md:text-lg">
         <li>

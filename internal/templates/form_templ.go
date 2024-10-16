@@ -8,7 +8,12 @@ package templates
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Form() templ.Component {
+import (
+	"debtrecyclingcalc.com/internal/calc"
+	"fmt"
+)
+
+func Form(params *calc.Parameters) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
@@ -26,7 +31,131 @@ func Form() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<form hx-post=\"/calc\" hx-swap=\"innerHTML\" hx-target=\"#results\" hx-trigger=\"change from:input[type=checkbox], change from:#country_selection\" class=\"p-4 flex-col justify-center items-center bg-stone-50 shadow-md rounded-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl\"><div class=\"w-full pb-2\"><label for=\"salary\" class=\"block text-sm font-medium text-gray-700\">Salary</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"salary\" id=\"salary\" value=\"150000\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"initial_investment\" class=\"block text-sm font-medium text-gray-700\">Initial Investment</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"initial_investment\" id=\"initial_investment\" value=\"100000\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"annual_investment\" class=\"block text-sm font-medium text-gray-700\">Annual Investment</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"annual_investment\" id=\"annual_investment\" value=\"50000\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"mortgage_size\" class=\"block text-sm font-medium text-gray-700\">Mortgage</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"mortgage_size\" id=\"mortgage_size\" value=\"600000\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"mortgage_interest_rate\" class=\"block text-sm font-medium text-gray-700\">Mortgage Interest Rate</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"mortgage_interest_rate\" id=\"mortgage_interest_rate\" value=\"5\" step=\"0.01\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"dividend_return_rate\" class=\"block text-sm font-medium text-gray-700\">Dividend Return Rate</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"dividend_return_rate\" id=\"dividend_return_rate\" value=\"2\" step=\"0.01\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"capital_growth_rate\" class=\"block text-sm font-medium text-gray-700\">Capital Growth Rate</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"capital_growth_rate\" id=\"capital_growth_rate\" value=\"8\" step=\"0.01\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"years\" class=\"block text-sm font-medium text-gray-700\">Years</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"years\" id=\"years\" value=\"10\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"mb-4\"><label for=\"country_selection\" class=\"block text-sm font-medium text-gray-700\">Country</label> <select id=\"country_selection\" name=\"country\" autocomplete=\"on\" class=\"mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm\"><option value=\"AU\">🇦🇺 Australia</option> <option value=\"NZ\">🇳🇿 New Zealand</option></select></div><div class=\"flex items-center pb-3\"><input type=\"checkbox\" name=\"reinvest_dividends\" autocomplete=\"on\" id=\"reinvest_dividends\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\" checked> <label for=\"reinvest_dividends\" class=\"ml-2 block text-sm text-gray-900\">Reinvest Dividends</label></div><div class=\"flex items-center pb-3\"><input type=\"checkbox\" name=\"reinvest_tax_refunds\" id=\"reinvest_tax_refunds\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\" checked> <label for=\"reinvest_tax_refunds\" class=\"ml-2 block text-sm text-gray-900\">Reinvest Tax Refunds</label></div></form>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<form hx-post=\"/calc\" hx-swap=\"innerHTML\" hx-target=\"#results\" hx-trigger=\"change from:input[type=checkbox], change from:#country_selection\" class=\"p-4 flex-col justify-center items-center bg-stone-50 shadow-md rounded-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl\"><div class=\"w-full pb-2\"><label for=\"salary\" class=\"block text-sm font-medium text-gray-700\">Salary</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"salary\" id=\"salary\" value=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var2 string
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(params.Salary)))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/form.templ`, Line: 21, Col: 61}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"initial_investment\" class=\"block text-sm font-medium text-gray-700\">Initial Investment</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"initial_investment\" id=\"initial_investment\" value=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var3 string
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(params.InitialInvestment)))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/form.templ`, Line: 36, Col: 72}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"annual_investment\" class=\"block text-sm font-medium text-gray-700\">Annual Investment</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"annual_investment\" id=\"annual_investment\" value=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var4 string
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(params.AnnualInvestment)))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/form.templ`, Line: 51, Col: 71}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"mortgage_size\" class=\"block text-sm font-medium text-gray-700\">Mortgage</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"mortgage_size\" id=\"mortgage_size\" value=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var5 string
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", int(params.MortgageSize)))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/form.templ`, Line: 64, Col: 67}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"mortgage_interest_rate\" class=\"block text-sm font-medium text-gray-700\">Mortgage Interest Rate</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"mortgage_interest_rate\" id=\"mortgage_interest_rate\" value=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var6 string
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", params.MortgageInterestRate*100))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/form.templ`, Line: 79, Col: 76}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"dividend_return_rate\" class=\"block text-sm font-medium text-gray-700\">Dividend Return Rate</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"dividend_return_rate\" id=\"dividend_return_rate\" value=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var7 string
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", params.DividendReturnRate*100))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/form.templ`, Line: 94, Col: 74}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"capital_growth_rate\" class=\"block text-sm font-medium text-gray-700\">Capital Growth Rate</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"capital_growth_rate\" id=\"capital_growth_rate\" value=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var8 string
+		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", params.CapitalGrowthRate*100))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/form.templ`, Line: 109, Col: 73}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"w-full pb-2\"><label for=\"years\" class=\"block text-sm font-medium text-gray-700\">Years</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup changed delay:0.8s\" type=\"number\" name=\"years\" id=\"years\" value=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var9 string
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", params.NumYears))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/form.templ`, Line: 124, Col: 58}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"mb-4\"><label for=\"country_selection\" class=\"block text-sm font-medium text-gray-700\">Country</label> <select id=\"country_selection\" name=\"country\" autocomplete=\"on\" class=\"mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm\"><option value=\"AU\">🇦🇺 Australia</option> <option value=\"NZ\">🇳🇿 New Zealand</option></select></div><div class=\"flex items-center pb-3\"><input type=\"checkbox\" name=\"reinvest_dividends\" autocomplete=\"on\" id=\"reinvest_dividends\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if params.ReinvestDividends {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" checked")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("> <label for=\"reinvest_dividends\" class=\"ml-2 block text-sm text-gray-900\">Reinvest Dividends</label></div><div class=\"flex items-center pb-3\"><input type=\"checkbox\" name=\"reinvest_tax_refunds\" id=\"reinvest_tax_refunds\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if params.ReinvestTaxRefunds {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" checked")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("> <label for=\"reinvest_tax_refunds\" class=\"ml-2 block text-sm text-gray-900\">Reinvest Tax Refunds</label></div></form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

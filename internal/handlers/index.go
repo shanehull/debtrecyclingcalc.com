@@ -19,7 +19,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 
 		c := templates.NotFound()
-		err := templates.Layout(c, "Not Fountempl.WithStatus(http.StatusNotFound)d", buildinfo.GitTag, buildinfo.BuildDate).
+		err := templates.Layout(c, "Not Found", buildinfo.GitTag, buildinfo.BuildDate).
 			Render(r.Context(), w)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -28,18 +28,28 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	params := &calc.DebtRecyclingParameters{
+	params := &calc.Parameters{
 		Salary:               150000,
 		InitialInvestment:    100000,
 		AnnualInvestment:     50000,
 		MortgageSize:         600000,
-		MortgageInterestRate: 0.05,
-		DividendReturnRate:   0.02,
-		CapitalGrowthRate:    0.08,
+		MortgageInterestRate: 0.0500,
+		DividendReturnRate:   0.0200,
+		CapitalGrowthRate:    0.0800,
 		NumYears:             10,
 		Country:              "au",
 		ReinvestDividends:    true,
 		ReinvestTaxRefunds:   true,
+	}
+
+	query := r.URL.Query()
+	var err error
+	if len(query) != 0 {
+		params, err = getQueryParams(query)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 	}
 
 	data, err := calc.DebtRecycling(*params)
@@ -68,7 +78,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
 	index := templates.Index(
 		templates.Hero(),
-		templates.Form(),
+		templates.Form(params),
 		templates.Results(data, params, positionsChart, incomeChart, interestChart),
 	)
 

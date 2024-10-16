@@ -17,13 +17,13 @@ func Test_CAGR(t *testing.T) {
 
 func Test_DebtRecycling(t *testing.T) {
 	type drTests struct {
-		params   DebtRecyclingParameters
-		expected *DebtRecyclingData
+		params   Parameters
+		expected *Data
 	}
 
 	cases := []drTests{
 		{
-			params: DebtRecyclingParameters{
+			params: Parameters{
 				Salary:               150000,
 				InitialInvestment:    100000,
 				AnnualInvestment:     50000,
@@ -36,7 +36,7 @@ func Test_DebtRecycling(t *testing.T) {
 				ReinvestDividends:    false,
 				ReinvestTaxRefunds:   false,
 			},
-			expected: &DebtRecyclingData{
+			expected: &Data{
 				DebtRecycled: []float64{
 					100000,
 					150000,
@@ -151,7 +151,7 @@ func Test_DebtRecycling(t *testing.T) {
 			},
 		},
 		{
-			params: DebtRecyclingParameters{
+			params: Parameters{
 				Salary:               150000,
 				InitialInvestment:    100000,
 				AnnualInvestment:     50000,
@@ -164,7 +164,7 @@ func Test_DebtRecycling(t *testing.T) {
 				ReinvestDividends:    true,
 				ReinvestTaxRefunds:   false,
 			},
-			expected: &DebtRecyclingData{
+			expected: &Data{
 				PortfolioValue: []float64{
 					100000,
 					164160,
@@ -231,7 +231,7 @@ func Test_DebtRecycling(t *testing.T) {
 			},
 		},
 		// {
-		// 	params: DebtRecyclingParameters{
+		// 	params: Parameters{
 		// 		Salary:               150000,
 		// 		InitialInvestment:    100000,
 		// 		AnnualInvestment:     50000,
@@ -244,7 +244,7 @@ func Test_DebtRecycling(t *testing.T) {
 		// 		ReinvestDividends:    false,
 		// 		ReinvestTaxRefunds:   true,
 		// 	},
-		// 	expected: &DebtRecyclingData{
+		// 	expected: &Data{
 		// 		PortfolioValue: []float64{
 		// 			100000,
 		// 			166247.11052631578,
@@ -311,7 +311,7 @@ func Test_DebtRecycling(t *testing.T) {
 		// 	},
 		// },
 		// {
-		// 	params: DebtRecyclingParameters{
+		// 	params: Parameters{
 		// 		Salary:               150000,
 		// 		InitialInvestment:    100000,
 		// 		AnnualInvestment:     50000,
@@ -324,13 +324,13 @@ func Test_DebtRecycling(t *testing.T) {
 		// 		ReinvestDividends:    true,
 		// 		ReinvestTaxRefunds:   true,
 		// 	},
-		// 	expected: &DebtRecyclingData{
+		// 	expected: &Data{
 
 		// blah
 		//},
 		// },
 		// {
-		// 	params: DebtRecyclingParameters{
+		// 	params: Parameters{
 		// 		Salary:               150000,
 		// 		InitialInvestment:    100000,
 		// 		AnnualInvestment:     50000,
@@ -343,7 +343,7 @@ func Test_DebtRecycling(t *testing.T) {
 		// 		ReinvestDividends:    false,
 		// 		ReinvestTaxRefunds:   false,
 		// 	},
-		// 	expected: &DebtRecyclingData{},
+		// 	expected: &Data{},
 		// },
 	}
 	for i, c := range cases {
@@ -422,7 +422,7 @@ func compareAllFloat64Values(
 	got, want []float64,
 	fieldName string,
 	testIndex int,
-	params DebtRecyclingParameters,
+	params Parameters,
 ) {
 	if len(got) != len(want) {
 		t.Errorf(
