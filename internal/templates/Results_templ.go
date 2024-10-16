@@ -14,8 +14,8 @@ import (
 )
 
 func Results(
-	data *calc.DebtRecyclingData,
-	params *calc.DebtRecyclingParameters,
+	data *calc.Data,
+	params *calc.Parameters,
 	positionsChart *echarts.Line,
 	incomeChart *echarts.Bar,
 	interestChart *echarts.Bar,

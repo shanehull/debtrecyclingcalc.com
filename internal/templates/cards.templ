@@ -6,7 +6,7 @@ import (
     "debtrecyclingcalc.com/internal/calc"
 )
 
-templ cards(data *calc.DebtRecyclingData, years int) {
+templ cards(data *calc.Data, years int) {
     <div class="block md:hidden md:grid gap-4 text-center">
       for year := 0; year < years;year++ {
       <table class="bg-stone-50 shadow-md mb-4 mx-auto rounded-lg striped border-separate spacing-0 table-columns-right table-auto max-w-lg mx-auto text-sm">
