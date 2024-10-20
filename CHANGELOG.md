@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.0...v0.1.1) (2024-10-20)
+
+
+### Bug Fixes
+
+* fallback to default params on index ([#15](https://github.com/shanehull/debtrecyclingcalc.com/issues/15)) ([a803e05](https://github.com/shanehull/debtrecyclingcalc.com/commit/a803e0536eb80aa925d7a35f3e703e67436fdd28))
+
 ## [0.1.0](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.0.6...v0.1.0) (2024-10-16)
 
 
