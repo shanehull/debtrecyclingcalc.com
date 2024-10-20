@@ -135,7 +135,7 @@ func Form(params *calc.Parameters) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"mb-4\"><label for=\"country_selection\" class=\"block text-sm font-medium text-gray-700\">Country</label> <select id=\"country_selection\" name=\"country\" autocomplete=\"on\" class=\"mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm\"><option value=\"AU\">🇦🇺 Australia</option> <option value=\"NZ\">🇳🇿 New Zealand</option></select></div><div class=\"flex items-center pb-3\"><input type=\"checkbox\" name=\"reinvest_dividends\" autocomplete=\"on\" id=\"reinvest_dividends\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"mb-4\"><label for=\"country_selection\" class=\"block text-sm font-medium text-gray-700\">Country</label> <select id=\"country_selection\" name=\"country\" class=\"mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm\"><option value=\"AU\">🇦🇺 Australia</option> <option value=\"NZ\">🇳🇿 New Zealand</option></select></div><div class=\"flex items-center pb-3\"><input type=\"checkbox\" name=\"reinvest_dividends\" value=\"true\" id=\"reinvest_dividends\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -145,7 +145,7 @@ func Form(params *calc.Parameters) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("> <label for=\"reinvest_dividends\" class=\"ml-2 block text-sm text-gray-900\">Reinvest Dividends</label></div><div class=\"flex items-center pb-3\"><input type=\"checkbox\" name=\"reinvest_tax_refunds\" id=\"reinvest_tax_refunds\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("> <label for=\"reinvest_dividends\" class=\"ml-2 block text-sm text-gray-900\">Reinvest Dividends</label></div><div class=\"flex items-center pb-3\"><input type=\"checkbox\" name=\"reinvest_tax_refunds\" value=\"true\" id=\"reinvest_tax_refunds\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
