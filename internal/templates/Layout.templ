@@ -8,9 +8,12 @@ import (
 templ head(title string) {
     <head>
         <title>{title}</title>
-        <meta name="description" content="Calculate your debt recycling scnenario." />
+        <meta 
+            name="description"
+            content="Explore debt recycling scenarios with this customizable calculator. Adjust investment amounts, growth rates, and reinvestment options to see how debt recycling might impact your finances."
+        >
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" >
         <meta name="htmx-config"
             content={
                 fmt.Sprintf(
@@ -19,11 +22,11 @@ templ head(title string) {
                     middleware.GetInlineStyleNonce(ctx),
                 ) 
             } 
-        />
+        >
         <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.2/dist/htmx.min.js" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/hyperscript.org@0.9.12/dist/_hyperscript.min.js" integrity="sha384-+Uth1QzYJsTjnS5SXVN3fFO4I32Y571xIuv53WJ2SA7y5/36tKU1VCutONAmg5eH" crossorigin="anonymous" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="static/css/style.min.css" />
+        <link rel="stylesheet" type="text/css" href="static/css/style.min.css" >
         <style nonce={ middleware.GetInlineStyleNonce(ctx) }>
         .echarts-chart-wrapper {
             height: 18rem;
