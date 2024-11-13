@@ -14,7 +14,7 @@ var firstPositive = -1
 func getFirstPositiveYear(data []float64) string {
     for i, value := range data {
        if value > 0 {
-               return strconv.Itoa(i+1)
+           return strconv.Itoa(i+1)
        }
     }
     return "—"
