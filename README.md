@@ -31,6 +31,6 @@ In particular, it does not take into account any changes in the market, rates of
 
 It also does not take into account franking credits, or the (hopefully) increasing value of your property and the subsequent increase in available equity.
 
-> _"It is better to be roughly right than precisely wrong."_
+> _"It is better to be vaguely right than exactly wrong."_
 >
-> \- <cite>John Manyard Keynes</cite>
+> \- <cite>Carveth Read</cite>
