@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.2...v0.1.3) (2024-11-15)
+
+
+### Bug Fixes
+
+* display a dash when net positive is not reached ([#20](https://github.com/shanehull/debtrecyclingcalc.com/issues/20)) ([42ef5e8](https://github.com/shanehull/debtrecyclingcalc.com/commit/42ef5e8372e8ee5602f5363e68ce60b8cb1d6e95))
+* keynes was an iyi ([#22](https://github.com/shanehull/debtrecyclingcalc.com/issues/22)) ([2ae9d0e](https://github.com/shanehull/debtrecyclingcalc.com/commit/2ae9d0ee875273bb98bf4bfe30efac2754a13178))
+
 ## [0.1.2](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.1...v0.1.2) (2024-11-11)
 
 
