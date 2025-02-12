@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.4...v0.1.5) (2025-02-12)
+
+
+### Bug Fixes
+
+* tailwind binary issue release ([#26](https://github.com/shanehull/debtrecyclingcalc.com/issues/26)) ([268bede](https://github.com/shanehull/debtrecyclingcalc.com/commit/268bedeb70b9e151f5a33e0033320ba0c2b9bd8d))
+
 ## [0.1.4](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.3...v0.1.4) (2025-02-09)
 
 
