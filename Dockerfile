@@ -10,7 +10,7 @@ RUN update-ca-certificates
 RUN go install github.com/a-h/templ/cmd/templ@latest
 
 RUN curl -sLO \
-    https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64 && \
+    https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-linux-x64 && \
     mv tailwindcss-linux-x64 tailwindcss \
     && chmod +x tailwindcss
 
