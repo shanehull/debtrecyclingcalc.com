@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.5...v0.1.6) (2025-05-15)
+
+
+### Bug Fixes
+
+* triggers for checkbox and select ([463cf6a](https://github.com/shanehull/debtrecyclingcalc.com/commit/463cf6ac1a6cd3ce004ed488afc829372846800e))
+
 ## [0.1.5](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.4...v0.1.5) (2025-02-12)
 
 
