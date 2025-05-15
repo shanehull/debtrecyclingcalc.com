@@ -34,7 +34,7 @@ func Form(params *calc.Parameters) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<form hx-post=\"/calc\" hx-swap=\"innerHTML\" hx-target=\"#results\" hx-trigger=\"change from:input[type=checkbox], change from:#country_selection\" class=\"p-4 flex-col justify-center items-center bg-stone-50 shadow-md rounded-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl\"><div class=\"w-full pb-2\"><label for=\"salary\" class=\"block text-sm font-medium text-gray-700\">Salary</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup delay:0.8s\" type=\"number\" name=\"salary\" id=\"salary\" value=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<form hx-post=\"/calc\" class=\"p-4 flex-col justify-center items-center bg-stone-50 shadow-md rounded-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl\"><div class=\"w-full pb-2\"><label for=\"salary\" class=\"block text-sm font-medium text-gray-700\">Salary</label> <input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"keyup delay:0.8s\" type=\"number\" name=\"salary\" id=\"salary\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -138,27 +138,47 @@ func Form(params *calc.Parameters) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"mb-4\"><label for=\"country_selection\" class=\"block text-sm font-medium text-gray-700\">Country</label> <select id=\"country_selection\" name=\"country\" class=\"mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm\"><option value=\"AU\">🇦🇺 Australia</option> <option value=\"NZ\">🇳🇿 New Zealand</option></select></div><div class=\"flex items-center pb-3\"><input type=\"checkbox\" name=\"reinvest_dividends\" value=\"true\" id=\"reinvest_dividends\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm\"></div><div class=\"mb-4\"><label for=\"country_selection\" class=\"block text-sm font-medium text-gray-700\">Country</label> <select hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"change\" name=\"country\" id=\"country_selection\" class=\"mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm\"><option value=\"AU\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if params.Country == "AU" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, " selected")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, ">🇦🇺 Australia</option> <option value=\"NZ\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if params.Country == "NZ" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, " selected")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, ">🇳🇿 New Zealand</option></select></div><div class=\"flex items-center pb-3\"><input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"change\" type=\"checkbox\" name=\"reinvest_dividends\" value=\"true\" id=\"reinvest_dividends\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if params.ReinvestDividends {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, " checked")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, " checked")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "> <label for=\"reinvest_dividends\" class=\"ml-2 block text-sm text-gray-900\">Reinvest Dividends</label></div><div class=\"flex items-center pb-3\"><input type=\"checkbox\" name=\"reinvest_tax_refunds\" value=\"true\" id=\"reinvest_tax_refunds\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "> <label for=\"reinvest_dividends\" class=\"ml-2 block text-sm text-gray-900\">Reinvest Dividends</label></div><div class=\"flex items-center pb-3\"><input hx-post=\"/calc\" hx-target=\"#results\" hx-trigger=\"change\" type=\"checkbox\" name=\"reinvest_tax_refunds\" value=\"true\" id=\"reinvest_tax_refunds\" class=\"h-4 w-4 text-blue-600 border-gray-300 rounded\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if params.ReinvestTaxRefunds {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, " checked")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, " checked")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "> <label for=\"reinvest_tax_refunds\" class=\"ml-2 block text-sm text-gray-900\">Reinvest Tax Refunds</label></div></form>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "> <label for=\"reinvest_tax_refunds\" class=\"ml-2 block text-sm text-gray-900\">Reinvest Tax Refunds</label></div></form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
