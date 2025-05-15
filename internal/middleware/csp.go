@@ -12,7 +12,7 @@ import (
 
 type key string
 
-var NonceKey key = "nonces"
+const NonceKey key = "nonces"
 
 type Nonces struct {
 	InlineScript string

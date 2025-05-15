@@ -83,8 +83,7 @@ func (r *tailwindRenderer) Render(w io.Writer) error {
 			Parse(baseTpl),
 		)
 
-	err := tpl.ExecuteTemplate(w, tplName, r.c)
-	return err
+	return tpl.ExecuteTemplate(w, tplName, r.c)
 }
 
 func ChartToTemplComponent(chart Renderable) templ.Component {
@@ -115,9 +114,7 @@ func Positions(
 		echarts.WithLegendOpts(opts.Legend{Left: "center"}),
 		echarts.WithTooltipOpts(
 			opts.Tooltip{
-				// TODO: tooltip injects style attributes and triggers csp violation
-				// https://github.com/apache/echarts/issues/19938
-				Show:        opts.Bool(false),
+				Show:        opts.Bool(true),
 				Trigger:     "axis",
 				AxisPointer: &opts.AxisPointer{Type: "cross"},
 			},
@@ -202,9 +199,7 @@ func Income(data *calc.Data, years int, ctx context.Context) (*echarts.Bar, erro
 		echarts.WithLegendOpts(opts.Legend{Left: "center"}),
 		echarts.WithTooltipOpts(
 			opts.Tooltip{
-				// TODO: tooltip injects style attributes and triggers csp violation
-				// https://github.com/apache/echarts/issues/19938
-				Show:        opts.Bool(false),
+				Show:        opts.Bool(true),
 				Trigger:     "axis",
 				AxisPointer: &opts.AxisPointer{Type: "cross"},
 			},
@@ -277,9 +272,7 @@ func Interest(data *calc.Data, years int, ctx context.Context) (*echarts.Bar, er
 		echarts.WithLegendOpts(opts.Legend{Left: "center"}),
 		echarts.WithTooltipOpts(
 			opts.Tooltip{
-				// TODO: tooltip injects style attributes and triggers csp violation
-				// https://github.com/apache/echarts/issues/19938
-				Show:        opts.Bool(false),
+				Show:        opts.Bool(true),
 				Trigger:     "axis",
 				AxisPointer: &opts.AxisPointer{Type: "cross"},
 			},
