@@ -20,9 +20,9 @@ var (
 	allowedOrigin   = "*"
 	serverHost      = "127.0.0.1"
 	serverPort      = "8080"
-	htmxHash        = "sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
-	hyperscriptHash = "sha384-+Uth1QzYJsTjnS5SXVN3fFO4I32Y571xIuv53WJ2SA7y5/36tKU1VCutONAmg5eH"
-	echartsHash     = "sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
+	htmxHash        = "sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+	hyperscriptHash = "sha384-PHB1Sh8oNP+x/7DnXnGgRL3pHqqjvJrrASslf5EClwgcJVQcmyf0fUqr6h39eO/t"
+	echartsHash     = "sha384-pPi0zxBAoDu6+JXW/C68UZLvBUUtU+7zonhif43rqj7pxsGyqyqzcian2Rj37Rss"
 	logger          *slog.Logger
 )
 

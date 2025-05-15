@@ -14,7 +14,7 @@ templ Form(params *calc.Parameters) {
             <input 
                 hx-post="/calc" 
                 hx-target="#results" 
-                hx-trigger="keyup changed delay:0.8s" 
+                hx-trigger="keyup delay:0.8s"
                 type="number" 
                 name="salary" 
                 id="salary" 
@@ -29,7 +29,7 @@ templ Form(params *calc.Parameters) {
             <input 
                 hx-post="/calc"
                 hx-target="#results"
-                hx-trigger="keyup changed delay:0.8s"
+                hx-trigger="keyup delay:0.8s"
                 type="number"
                 name="initial_investment"
                 id="initial_investment"
@@ -44,7 +44,7 @@ templ Form(params *calc.Parameters) {
             <input 
                 hx-post="/calc"
                 hx-target="#results"
-                hx-trigger="keyup changed delay:0.8s"
+                hx-trigger="keyup delay:0.8s"
                 type="number"
                 name="annual_investment"
                 id="annual_investment"
@@ -58,8 +58,9 @@ templ Form(params *calc.Parameters) {
             <input
                 hx-post="/calc"
                 hx-target="#results"
-                hx-trigger="keyup changed delay:0.8s"
-                type="number" name="mortgage_size"
+                hx-trigger="keyup delay:0.8s"
+                type="number"
+                name="mortgage_size"
                 id="mortgage_size"
                 value={ fmt.Sprintf("%d", int(params.MortgageSize)) }
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
@@ -72,7 +73,7 @@ templ Form(params *calc.Parameters) {
             <input
                 hx-post="/calc"
                 hx-target="#results"
-                hx-trigger="keyup changed delay:0.8s"
+                hx-trigger="keyup delay:0.8s"
                 type="number"
                 name="mortgage_interest_rate"
                 id="mortgage_interest_rate"
@@ -87,7 +88,7 @@ templ Form(params *calc.Parameters) {
             <input
                 hx-post="/calc"
                 hx-target="#results"
-                hx-trigger="keyup changed delay:0.8s"
+                hx-trigger="keyup delay:0.8s"
                 type="number"
                 name="dividend_return_rate"
                 id="dividend_return_rate"
@@ -102,7 +103,7 @@ templ Form(params *calc.Parameters) {
             <input
                 hx-post="/calc"
                 hx-target="#results"
-                hx-trigger="keyup changed delay:0.8s"
+                hx-trigger="keyup delay:0.8s"
                 type="number"
                 name="capital_growth_rate"
                 id="capital_growth_rate"
@@ -117,7 +118,7 @@ templ Form(params *calc.Parameters) {
             <input
                 hx-post="/calc"
                 hx-target="#results"
-                hx-trigger="keyup changed delay:0.8s"
+                hx-trigger="keyup delay:0.8s"
                 type="number"
                 name="years"
                 id="years"
