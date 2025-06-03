@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.6...v0.1.7) (2025-06-03)
+
+
+### Bug Fixes
+
+* hyperscript source ([#31](https://github.com/shanehull/debtrecyclingcalc.com/issues/31)) ([4ad3fdc](https://github.com/shanehull/debtrecyclingcalc.com/commit/4ad3fdcf40446c75758bc683fcb1edafe9595ec8))
+
 ## [0.1.6](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.5...v0.1.6) (2025-05-15)
 
 
