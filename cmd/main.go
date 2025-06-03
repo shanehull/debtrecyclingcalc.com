@@ -21,7 +21,7 @@ var (
 	serverHost      = "127.0.0.1"
 	serverPort      = "8080"
 	htmxHash        = "sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
-	hyperscriptHash = "sha384-PHB1Sh8oNP+x/7DnXnGgRL3pHqqjvJrrASslf5EClwgcJVQcmyf0fUqr6h39eO/t"
+	hyperscriptHash = "sha384-NzchC8z9HmP/Ed8cheGl9XuSrFSkDNHPiDl+ujbHE0F0I7tWC4rUnwPXP+7IvVZv"
 	echartsHash     = "sha384-pPi0zxBAoDu6+JXW/C68UZLvBUUtU+7zonhif43rqj7pxsGyqyqzcian2Rj37Rss"
 	logger          *slog.Logger
 )
