@@ -114,7 +114,7 @@ func Positions(
 		echarts.WithLegendOpts(opts.Legend{Left: "center"}),
 		echarts.WithTooltipOpts(
 			opts.Tooltip{
-				Show:        opts.Bool(true),
+				Show:        opts.Bool(false),
 				Trigger:     "axis",
 				AxisPointer: &opts.AxisPointer{Type: "cross"},
 			},
@@ -199,7 +199,7 @@ func Income(data *calc.Data, years int, ctx context.Context) (*echarts.Bar, erro
 		echarts.WithLegendOpts(opts.Legend{Left: "center"}),
 		echarts.WithTooltipOpts(
 			opts.Tooltip{
-				Show:        opts.Bool(true),
+				Show:        opts.Bool(false),
 				Trigger:     "axis",
 				AxisPointer: &opts.AxisPointer{Type: "cross"},
 			},
@@ -272,7 +272,7 @@ func Interest(data *calc.Data, years int, ctx context.Context) (*echarts.Bar, er
 		echarts.WithLegendOpts(opts.Legend{Left: "center"}),
 		echarts.WithTooltipOpts(
 			opts.Tooltip{
-				Show:        opts.Bool(true),
+				Show:        opts.Bool(false),
 				Trigger:     "axis",
 				AxisPointer: &opts.AxisPointer{Type: "cross"},
 			},
