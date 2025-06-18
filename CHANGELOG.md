@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.8](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.7...v0.1.8) (2025-06-18)
+
+
+### Bug Fixes
+
+* disable tooltip ([#33](https://github.com/shanehull/debtrecyclingcalc.com/issues/33)) ([d26cae3](https://github.com/shanehull/debtrecyclingcalc.com/commit/d26cae3f53e5b179feb19b831b056b4a91f55aa4))
+
 ## [0.1.7](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.6...v0.1.7) (2025-06-03)
 
 
