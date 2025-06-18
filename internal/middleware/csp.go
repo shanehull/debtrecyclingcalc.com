@@ -72,16 +72,15 @@ func CSPMiddleware(
 		csp := []string{
 			"default-src 'self'",
 			"base-uri 'none'",
-			// "require-trusted-types-for 'script'",
 			fmt.Sprintf(
-				"script-src '%s' '%s' '%s' 'nonce-%s' 'unsafe-inline'",
+				"script-src '%s' '%s' '%s' 'nonce-%s'",
 				htmxHash,
 				hyperscriptHash,
 				echartsHash,
 				nonceSet.InlineScript,
 			),
 			fmt.Sprintf(
-				"style-src 'self' 'nonce-%s' 'unsafe-inline'",
+				"style-src 'self' 'nonce-%s'",
 				nonceSet.InlineStyle,
 			),
 			"img-src 'self' data:",
