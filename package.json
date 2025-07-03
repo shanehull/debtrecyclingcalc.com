@@ -1,0 +1,9 @@
+{
+	"dependencies": {
+		"@cloudflare/containers": "^0.0.17"
+	},
+	"devDependencies": {
+		"eslint": "^9.30.1",
+		"wrangler": "^4.22.0"
+	}
+}

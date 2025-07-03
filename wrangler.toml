@@ -1,0 +1,9 @@
+name = "debtrecyclingcalc"
+main = "worker/index.js"
+compatibility_date = "2025-07-02"
+
+[[containers]]
+class_name = "DebtRecyclingCalc"
+image = "./Dockerfile"
+max_instances = 2
+name = "debtrecyclingcalc"
