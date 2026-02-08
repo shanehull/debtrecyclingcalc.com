@@ -4,15 +4,16 @@ WORKDIR /app
 
 COPY . .
 
-RUN apk update && apk upgrade && apk add --no-cache ca-certificates curl
+RUN apk update && apk upgrade && apk add --no-cache ca-certificates curl libstdc++ gcompat
 RUN update-ca-certificates
 
 RUN go install github.com/a-h/templ/cmd/templ@latest
 
-RUN curl -sLO \
-    https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-linux-x64 && \
-    mv tailwindcss-linux-x64 tailwindcss \
-    && chmod +x tailwindcss
+RUN ARCH=$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/') && \
+    curl -sLO "https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-${ARCH}-musl" && \
+    mv "tailwindcss-linux-${ARCH}-musl" tailwindcss && \
+    chmod +x tailwindcss && \
+    ls -lh tailwindcss
 
 RUN templ generate
 

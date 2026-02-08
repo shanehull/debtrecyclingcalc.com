@@ -1,3 +1,34 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "../../internal/templates/*.templ";
+
+@theme {
+  --color-stone-50: #fafaf8;
+  --color-stone-200: #e7e5e4;
+  --color-gray-200: #e5e7eb;
+  --color-blue-600: #2563eb;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @variant sm {
+    padding-inline: 2rem;
+  }
+  @variant md {
+    padding-inline: 4rem;
+  }
+  @variant lg {
+    padding-inline: 5rem;
+  }
+}
+
+@layer components {
+  input[type="number"],
+  input[type="text"],
+  select {
+    padding: 0.5rem 0.75rem !important;
+    line-height: 1.5 !important;
+    min-height: 2.25rem !important;
+  }
+}
