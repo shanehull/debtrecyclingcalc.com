@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.9](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.8...v0.1.9) (2026-02-08)
+
+
+### Bug Fixes
+
+* bump go image ([#36](https://github.com/shanehull/debtrecyclingcalc.com/issues/36)) ([5e60174](https://github.com/shanehull/debtrecyclingcalc.com/commit/5e60174c7cc5d46836d1d985701cc2411361701b))
+* upgrade to tailwind 4 ([#38](https://github.com/shanehull/debtrecyclingcalc.com/issues/38)) ([f33d5b2](https://github.com/shanehull/debtrecyclingcalc.com/commit/f33d5b207ca6fe3395cdbe3d0da96358347c8117))
+
 ## [0.1.8](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.7...v0.1.8) (2025-06-18)
 
 
