@@ -17,4 +17,4 @@ jobs:
         id: release-please
         uses: googleapis/release-please-action@v4
         with:
-          token: ${{secrets.GITHUB_TOKEN}}
+          token: ${{secrets.RELEASES_GITHUB_TOKEN}}
