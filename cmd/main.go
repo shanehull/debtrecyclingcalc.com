@@ -36,11 +36,9 @@ func init() {
 }
 
 func main() {
-	ctx, cancel := signal.NotifyContext(
-		context.Background(),
-		os.Interrupt,
-		syscall.SIGTERM,
-	)
+	ctx, stop := signal.NotifyContext(
+		context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
 
 	// If the SERVER_HOST env var is set, use that
 	envHost, ok := os.LookupEnv("SERVER_HOST")
@@ -91,23 +89,21 @@ func main() {
 
 	// Run the server at
 	serveAt := fmt.Sprintf("%s:%s", serverHost, serverPort)
+	srv := http.Server{Addr: serveAt, Handler: mux}
 	go func() {
-		if err := http.ListenAndServe(serveAt, mux); err != nil {
+		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatal(err)
 		}
 	}()
 	logger.Info("server listening", "serverHost", serverHost, "serverPort", serverPort)
 
-	// Wait for interrupt signal.
+	// Wait for interrupt signal, then gracefully shut down
 	<-ctx.Done()
-
-	// Sleep to ensure graceful shutdown
-	sleepSeconds := 5
-	logger.Info("shutting down", "sleepSeconds", sleepSeconds)
-	time.Sleep(time.Duration(sleepSeconds) * time.Second)
-
-	// Return to default context.
-	cancel()
-
-	logger.Info("server shut down gracefully")
+	logger.Info("shutting down")
+	shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	if err := srv.Shutdown(shutdownCtx); err != nil {
+		logger.Error("forced shutdown", "error", err)
+	}
+	logger.Info("server stopped")
 }
