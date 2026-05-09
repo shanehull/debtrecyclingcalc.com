@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.10](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.9...v0.1.10) (2026-05-09)
+
+
+### Bug Fixes
+
+* replace sleep-based graceful shutdown with http.Server.Shutdown() ([#41](https://github.com/shanehull/debtrecyclingcalc.com/issues/41)) ([eb5807c](https://github.com/shanehull/debtrecyclingcalc.com/commit/eb5807c105058f46024d8d299d92ea698b06de4c))
+
 ## [0.1.9](https://github.com/shanehull/debtrecyclingcalc.com/compare/v0.1.8...v0.1.9) (2026-02-08)
 
 
